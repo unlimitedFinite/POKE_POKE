@@ -14,10 +14,8 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.save
-      redirect_to bookings_show_path(@booking.id)
-    else
-      render :new
+    @booking.save
+    redirect_to bookings_show_path(@booking.id)
   end
 
   def destroy
