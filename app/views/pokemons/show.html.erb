@@ -1,2 +1,39 @@
 <h1>Pokemons#show</h1>
 <p>Find me in app/views/pokemons/show.html.erb</p>
+
+
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <h2>&nbsp;<%= @pokemon.name %></h2>
+  <hr>
+
+  <div class="card-show">
+    <div class="image">
+      <% if @pokemon.photo.present? %>
+        <%= cl_image_tag @pokemon.photo, width: 350, crop: :scale %>
+      <% end %>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="ingredient-list">
+
+            <p><strong>xxxxxxxxx</strong></>
+
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <%= render "bookings/new" %>
+        </div>
+
+      </div>
+
+    </div>
+
+    </p><%= link_to 'Back to index', pokemons_path, class: "ml-3" %><p>
+  </div>
+</div>
