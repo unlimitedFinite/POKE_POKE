@@ -2,13 +2,14 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :destroy]
 
   def index
+    @bookings = Booking.new
   end
 
   def show
   end
 
   def new
-    Booking.new
+    @booking = Booking.new
   end
 
   def create
@@ -26,15 +27,11 @@ class BookingsController < ApplicationController
 
   private
 
-  def all_bookings
-    @bookings.all
-  end
-
   def set_booking
-    @booking.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
-    params.require(:booking).permit(:start_dt, :end_dt, :price_paid)
+    params.require(:booking).permit(:start_dt, :end_dt)
   end
 end
