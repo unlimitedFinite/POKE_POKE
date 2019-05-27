@@ -1,1 +1,36 @@
 // Specific CSS for your home-page
+
+.banner-index {
+  background-image: linear-gradient(rgba(13, -11, 18, 0.3), rgba(0, 0, 0, 0.6)), url('https://cdn.vox-cdn.com/thumbor/IKt535q8LMnJDddmLL74TBtzv88=/0x266:1024x949/1280x854/cdn.vox-cdn.com/uploads/chorus_image/image/48942277/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  justify-content: center;
+}
+.banner-index h1 {
+  color: #ffffff;
+  font-family: 'Special Elite';
+  font-size: 3.5em;
+}
+
+.banner-index h2 {
+  color: #ffffffb0;
+  justify-content: center;
+  font-family: 'Lobster', cursive;
+  font-size: 1.8em;
+  padding: 15px;
+}
+
+// .banner {
+//   background-image: -webkit-linear-gradient(rgba(13, -11, 18, 0.3), rgba(0, 0, 0, 0.6)), url('https://res.cloudinary.com/deyw9z6tu/image/upload/v1558668973/cocktail1_lgqzob.jpg');
+//   background-image: -o-linear-gradient(rgba(13, -11, 18, 0.3), rgba(0, 0, 0, 0.6)), url('https://res.cloudinary.com/deyw9z6tu/image/upload/v1558668973/cocktail1_lgqzob.jpg');
+//   background-image: linear-gradient(rgba(13, -11, 18, 0.3), rgba(0, 0, 0, 0.6)), url('https://res.cloudinary.com/deyw9z6tu/image/upload/v1558668973/cocktail1_lgqzob.jpg');
+//   height: 300px;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   padding-right: 29%;
+// }
