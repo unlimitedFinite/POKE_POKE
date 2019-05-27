@@ -1,0 +1,19 @@
+
+<%= simple_form_for [@pokemon, @booking] do |f| %>
+
+  <!<% if @booking.errors.any? %>
+    <div class="errors-container">
+      <ul>
+        <% @booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :start_dt %>
+  <%= f.input :end_dt %>
+  <%= f.submit "Book this Pokemon", class: "btn btn-primary" %>
+
+<% end %>
+
