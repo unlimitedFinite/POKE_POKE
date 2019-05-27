@@ -34,13 +34,14 @@ misty = User.create(
 
 
 # Create Pokemons
-Pokemon.create(
+pikachu = Pokemon.new(
   user: ash,
   level: 25,
   address: '2358 Lombard Street, San Francisco, CA, USA',
   price_per_day: 50,
   name: 'Pikachu',
-  category: 'electric'
+  category: 'electric',
+  rating: 0
 )
 
 Pokemon.create(
@@ -49,7 +50,8 @@ Pokemon.create(
   address: 'Conkal, 97345 Conkal, Yucatan, Mexico',
   price_per_day: 50,
   name: 'Charmander',
-  category: 'fire'
+  category: 'fire',
+  rating: 0
 )
 
 Pokemon.create(
@@ -58,7 +60,8 @@ Pokemon.create(
   address: '98456 15th Avenue, Prince George, BC, Canada',
   price_per_day: 50,
   name: 'Bulbasaur',
-  category: 'grass'
+  category: 'grass',
+  rating: 0
 )
 
 Pokemon.create(
@@ -67,6 +70,7 @@ Pokemon.create(
   address: 'Vyshovatyi, Zakarpattia Oblast, Ukraine, 90546',
   price_per_day: 50,
   name: 'Squirtle',
-  category: 'water'
+  category: 'water',
+  rating: 0
 )
 
