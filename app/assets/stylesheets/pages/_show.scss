@@ -1,0 +1,38 @@
+.add-box {
+  margin: 170px auto;
+}
+
+.card-show {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 5px auto;
+}
+
+.card-show > img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.ingredient-table {
+  margin: 10px auto;
+}
+
+.ingredient-list {
+  width: 300px;
+  margin-top: 10px;
+}
+
+.select2 {
+width:100%!important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.image {
+  text-align: center;
+  padding-top: 10px;
+}
