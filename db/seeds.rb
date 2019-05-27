@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Delete records
+Booking.destroy_all
 Pokemon.destroy_all
 User.destroy_all
 
