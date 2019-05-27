@@ -1,5 +1,96 @@
 // Specific CSS for your home-page
 
+
+body {
+  padding-top: 70px;
+}
+
+.inner-card {
+  position: absolute;
+  top: 160px;
+}
+
+.inner-card a {
+  color: white;
+}
+
+.inner-card a:hover {
+  text-decoration: none;
+}
+
+.inner-card p {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary {
+  border-radius: 5px;
+}
+
+.button_to input {
+  background-color: white;
+  color: gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.card-index {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.card-category {
+  text-align: center;
+}
+
+.card-category a {
+  color: white;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+
 .banner-index {
   background-image: linear-gradient(rgba(13, -11, 18, 0.3), rgba(0, 0, 0, 0.6)), url('https://cdn.vox-cdn.com/thumbor/IKt535q8LMnJDddmLL74TBtzv88=/0x266:1024x949/1280x854/cdn.vox-cdn.com/uploads/chorus_image/image/48942277/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg');
   height: 100vh;
@@ -34,3 +125,4 @@
 //   justify-content: center;
 //   padding-right: 29%;
 // }
+

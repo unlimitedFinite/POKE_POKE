@@ -1,0 +1,22 @@
+<%= render 'shared/navbar' %>
+
+
+  <div class="container">
+    <h1>index</h1>
+      <div class="cards mt-3">
+        <% @pokemons.each do |pokemon| %>
+          <div class="card-category">
+
+            <% if pokemon.photo.present? %>
+            <%= cl_image_tag pokemon.photo, :height=>200, :crop=>"fill" %>
+            <% end %>
+
+            <!-- <div class="inner-card"> -->
+              <h2><%= link_to pokemon.name, pokemon_path(pokemon) %></h2>
+            <!-- </div> -->
+          </div>
+        <% end %>
+      </div>
+      <br>
+    </div>
+  </div>
