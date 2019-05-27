@@ -34,7 +34,7 @@ misty = User.create(
 
 
 # Create Pokemons
-pikachu = Pokemon.new(
+Pokemon.create(
   user: ash,
   level: 25,
   address: '2358 Lombard Street, San Francisco, CA, USA',
