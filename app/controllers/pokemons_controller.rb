@@ -3,7 +3,7 @@ require 'json'
 
 class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_pokemon, only: [:show, :update, :edit]
+  before_action :set_pokemon, only: [:show, :update, :edit, :destroy]
 
   def index
     @pokemons = policy_scope(Pokemon)
@@ -35,6 +35,10 @@ class PokemonsController < ApplicationController
   def update
     @pokemon.update(pokemon_params)
     redirect_to pokemon_path(@pokemon)
+  end
+
+  def destroy
+    @pokemon.destroy
   end
 
   private
