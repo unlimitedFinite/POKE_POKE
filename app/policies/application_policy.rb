@@ -43,7 +43,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.where(record.user == user)
+      scope.all
     end
   end
 end

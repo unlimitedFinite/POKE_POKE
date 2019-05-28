@@ -3,6 +3,7 @@ class PokemonPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
     def index?
       true
@@ -31,5 +32,4 @@ class PokemonPolicy < ApplicationPolicy
     def destroy?
       record.user == user
     end
-  end
 end
