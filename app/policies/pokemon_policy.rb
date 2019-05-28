@@ -5,7 +5,6 @@ class PokemonPolicy < ApplicationPolicy
       #   score.where(user: current_user)
       # else
       #   scope.where()
-
       # end
       scope.all
     end
@@ -16,11 +15,11 @@ class PokemonPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    record.user = user
   end
 
   def create?
-    true
+    record.user == user
   end
 
   def edit?

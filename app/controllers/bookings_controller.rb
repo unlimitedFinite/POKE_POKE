@@ -1,12 +1,11 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :destroy]
-  before_action :authenticate_user!
 
   def index
     @bookings = Booking.all
     @pokemons = Pokemon.all
     @user = current_user
-    authorize @booking
+    @bookings = policy_scope(Booking)
   end
 
   def show
@@ -34,7 +33,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking.delete
+    @booking.destroy
     redirect_to bookings_show_path(@booking.id)
   end
 
@@ -42,10 +41,10 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def booking_params
     params.require(:booking).permit(:start_dt, :end_dt)
-    authorize @booking
   end
 end
