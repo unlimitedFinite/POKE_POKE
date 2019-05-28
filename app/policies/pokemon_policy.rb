@@ -16,7 +16,7 @@ class PokemonPolicy < ApplicationPolicy
   end
 
   def new?
-
+    true
   end
 
   def create?
