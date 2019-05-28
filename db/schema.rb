@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_095822) do
+ActiveRecord::Schema.define(version: 2019_05_28_025747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(version: 2019_05_27_095822) do
     t.integer "level"
     t.string "address"
     t.float "price_per_day"
-    t.float "rating"
+    t.integer "rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true
     t.index ["user_id"], name: "index_pokemons_on_user_id"
   end
 

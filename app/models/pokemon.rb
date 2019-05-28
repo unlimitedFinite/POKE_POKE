@@ -3,7 +3,6 @@ class Pokemon < ApplicationRecord
   has_many :bookings
 
   validates :name, :level, :category, :price_per_day, presence: true
-  validates :name, uniqueness: { scope: :category }
   validates :price_per_day, :rating, numericality: true
 
   # TODO: Validate photos and ratings?
