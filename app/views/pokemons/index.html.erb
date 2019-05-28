@@ -1,21 +1,30 @@
-  <div class="container">
-    <h1>index</h1>
-      <div class="cards mt-3">
-        <% @pokemons.each do |pokemon| %>
-          <div class="card-category">
-
-            <% if pokemon.photo.present? %>
-            <%= cl_image_tag pokemon.photo, :height=>200, :crop=>"fill" %>
-            <% end %>
-
-            <!-- <div class="inner-card"> -->
-
-              <h2><%= link_to pokemon.name, pokemon_path(pokemon) %></h2>
-            <!-- </div> -->
-          </div>
-        <% end %>
-
-      </div>
-      <br>
-    </div>
+<div class="container">
+  <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
+  <div class="d-flex justify-content-between">
+    <input id="index-search" class="m-3" type="text" placeholder="Find your favourite pokemon today...">
+    <%= link_to 'Search', pokemons_path, class:'mt-3 mb-3 btn btn-success' %>
   </div>
+  <div class="card-container">
+    <% @pokemons.each do |pokemon| %>
+      <%= link_to pokemon_path(pokemon) do  %>
+        <div class="card-product">
+          <img src="<%= pokemon.photo %>">
+          <div class="card-product-infos">
+            <div class="row">
+              <div class="col-6 justify-around">
+                <h2><%= pokemon.name.titleize %></h2>
+                <p>This pokemon is a <strong><%= pokemon.category %></strong> type.</p>
+                <p>Level <%= pokemon.level %></p>
+              </div>
+              <div class="col-6 justify-around text-right">
+                <h2>$<%= pokemon.price_per_day %> per day</h2>
+                <p>Rating: <%= pokemon.rating %></p>
+                <p>Owner: <%= pokemon.user.first_name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
