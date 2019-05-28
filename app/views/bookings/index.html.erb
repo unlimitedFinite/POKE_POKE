@@ -1,10 +1,12 @@
 <h1>Bookings#index</h1>
 <p>Bookings for user with email: <%= @user.email %></p>
-<ul>
-  <% @bookings.each do |b| %>
-  <li>FROM: <%= b.start_dt %>, TO: <%= b.end_dt %></li>
-  <li>Hired for <%= (b.end_dt - b.start_dt) %> days</li>
-  <li><%= @pokemons.find(b.pokemon_id).name %></li>
-  <li><%= @pokemons.find(b.pokemon_id).category %></li>
-</ul>
+
+<% @bookings.each do |b| %>
+  <ul>
+    <li>FROM: <%= b.start_dt %>, TO: <%= b.end_dt %></li>
+    <li>Hired for <%= (b.end_dt - b.start_dt) %> days</li>
+    <li><%= @pokemons.find(b.pokemon_id).name %></li>
+    <li><%= @pokemons.find(b.pokemon_id).category %></li>
+    </p><%= link_to 'delete booking', booking_path(b), method: :delete, data: { confirm: "Are you sure?" } %></p>
+  </ul>
 <% end %>

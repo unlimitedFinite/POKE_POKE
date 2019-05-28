@@ -2,11 +2,9 @@ class PokemonPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       # if user.is_owner?
-      #   score.where(user: current_user)
+      #   scope.where(user: current_user)
       # else
-      #   scope.where()
-      # end
-      scope.all
+        scope.all
     end
   end
 
@@ -15,7 +13,7 @@ class PokemonPolicy < ApplicationPolicy
   end
 
   def new?
-    record.user = user
+    # not needed
   end
 
   def create?

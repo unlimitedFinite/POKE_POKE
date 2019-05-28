@@ -1,13 +1,14 @@
-// Specific CSS for your home-page
+
+body {
+  background-color: black;
+
 .container {
   background-color: white;
   height: 100vh;
   padding-top: 80px;
+
 }
 
-body {
-  background-color: white;
-}
 
 #landing-header {
   z-index: 1;
