@@ -21,7 +21,7 @@
               <h2><%= link_to 'Add a pokemon', new_pokemon_path %></h2>
             <% end %>
 
-            <% if policy(pokemom).edit? %>
+            <% if policy(pokemon).edit? %>
               <h2><%= link_to 'edit', edit_pokemon_path(pokemon) %></h2>
             <% end %>
 

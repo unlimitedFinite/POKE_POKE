@@ -8,21 +8,21 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon)
-    authorize @pokemon
   end
 
   def show
     @booking = Booking.new
-    authorize @pokemon
   end
 
   def new
     @pokemon = Pokemon.new
+    authorize @pokemon
   end
 
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
+    authorize @pokemon
 
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
@@ -40,6 +40,7 @@ class PokemonsController < ApplicationController
 
   def set_pokemon
     @pokemon = Pokemon.find(params[:id])
+    authorize @pokemon
   end
 
   def pokemon_params
