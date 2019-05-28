@@ -19,11 +19,11 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def edit?
-     # not needed, defer to delete booking
+    # not needed, defer to delete booking
   end
 
   def update?
-     # not needed, defer to delete booking
+    # not needed, defer to delete booking
   end
 
   def destroy?
