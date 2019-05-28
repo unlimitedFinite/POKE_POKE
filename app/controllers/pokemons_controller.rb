@@ -38,7 +38,6 @@ class PokemonsController < ApplicationController
   end
 
   def destroy
-    @pokemon.destroy
   end
 
   private

@@ -23,7 +23,7 @@
             <% end %>
 
             <% if policy(pokemon).destroy? %>
-              <h2><%= link_to 'destroy', pokemon_path(pokemon), method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+              <h2><%= link_to 'delist', pokemon_path(pokemon), method: :delete, data: { confirm: 'Are you sure?' } %></h2>
             <% end %>
 
             <!-- </div> -->

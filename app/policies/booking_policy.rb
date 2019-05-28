@@ -2,19 +2,16 @@ class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
+      # handles booking index view after booking is made
     end
   end
 
-  # def index?
-  #   true
-  # end
-
   def show?
-    true
+    # not used
   end
 
   def new?
-    true
+    # not needed since in ApplicationPolicy
   end
 
   def create?
@@ -22,15 +19,14 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def edit?
-    record.user == user
+     # not needed, defer to delete booking
   end
 
   def update?
-    record.user == user
+     # not needed, defer to delete booking
   end
 
   def destroy?
     record.user == user
   end
-
 end
