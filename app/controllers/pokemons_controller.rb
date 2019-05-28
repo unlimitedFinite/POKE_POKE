@@ -22,6 +22,7 @@ class PokemonsController < ApplicationController
 
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
+    @pokemon.photo = pokemon_info['sprites']['front_default']
     @pokemon.save!
     redirect_to pokemon_path(@pokemon)
   end
