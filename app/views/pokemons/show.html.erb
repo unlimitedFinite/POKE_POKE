@@ -37,7 +37,7 @@
 
   <div class="card-show">
     <div class="image">
-        <%= image_path @pokemon.photo, width: 350, crop: :fill %>
+        <%= image_tag @pokemon.photo, width: 200, crop: :scale %>
     </div>
     <div class="container">
       <div class="row">
