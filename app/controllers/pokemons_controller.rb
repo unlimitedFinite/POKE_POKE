@@ -3,7 +3,7 @@ require 'json'
 
 class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_pokemon, only: [:show, :update, :edit, :destroy]
+  before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
     @pokemons = policy_scope(Pokemon)
@@ -46,8 +46,18 @@ class PokemonsController < ApplicationController
     end
   end
 
-  def destroy
-    @pokemon.destroy
+  def deactivate
+    @pokemon.is_active = false
+    @pokemon.save
+    flash[:alert] = "#{@pokemon.name} is deactivated."
+    redirect_to pokemon_path(@pokemon)
+  end
+
+  def reactivate
+    @pokemon.is_active = true
+    @pokemon.save
+    flash[:success] = "#{@pokemon.name} is activated!"
+    redirect_to pokemon_path(@pokemon)
   end
 
   private
