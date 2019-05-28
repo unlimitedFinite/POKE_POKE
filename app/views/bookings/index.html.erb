@@ -1,12 +1,36 @@
-<h1>Bookings#index</h1>
-<p>Bookings for user with email: <%= @user.email %></p>
+<div class="container">
+  <h1>Bookings#index</h1>
+  <p>Bookings for user with email: <%= @user.email %></p>
+  <div class="card-container">
+    <% @bookings.each do |booking| %>
+      <% pokemon = @pokemons.find(booking.pokemon_id) %>
+      <div class="card-product p-3">
+        <img src="<%= pokemon.photo %>">
+        <div class="card-product-infos">
+          <div class="row">
+            <div class="col-6 justify-around">
+              <h2>
+                <%= pokemon.name.titleize %>
+                <% if (Time.now > booking.end_dt) %>
+                  <span class="ml-3 mb-2 badge badge-pill badge-success">Booking complete!</span>
+                <% else %>
+                  <%= link_to 'Cancel Booking', booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:'ml-3 mb-2 badge badge-pill badge-danger' %>
+                <% end %>
+              </h2>
+              <li>Hired for <%= (booking.end_dt - booking.start_dt).to_i %> days</li>
+              <li>Until <%= booking.end_dt %></li>
+              <%# else %>
+                <!-- <img class= 'completed' src="https://res.cloudinary.com/deyw9z6tu/image/upload/c_scale,q_61,r_10,w_100/v1559055260/PokePoke/completed_nje2az.png"> -->
+            </div>
+            <div class="col-6 justify-around text-right">
+              <h2>$<%= booking.price_paid %> </h2>
+              <p>Rating: <%= pokemon.rating %></p>
+              <p>User: <%= User.find(booking.user_id).email %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<% @bookings.each do |b| %>
-  <ul>
-    <li>FROM: <%= b.start_dt %>, TO: <%= b.end_dt %></li>
-    <li>Hired for <%= (b.end_dt - b.start_dt) %> days</li>
-    <li><%= @pokemons.find(b.pokemon_id).name %></li>
-    <li><%= @pokemons.find(b.pokemon_id).category %></li>
-    </p><%= link_to 'delete booking', booking_path(b), method: :delete, data: { confirm: "Are you sure?" } %></p>
-  </ul>
-<% end %>
