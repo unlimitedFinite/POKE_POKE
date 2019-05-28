@@ -20,7 +20,10 @@
       <% if current_user.is_owner == true %>
         <span><li>Currently logged in as owner <%= current_user.email %></li></span>
         <li class="nav-item">
-          <%= link_to "My Pokemons", pokemons_path, class: "nav-link" %>
+          <%= link_to "My Pokemon", pokemons_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Add new Pokemon", new_pokemon_path, class: "nav-link" %>
         </li>
       <% end %>
       <li class="nav-item">
