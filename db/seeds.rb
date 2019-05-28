@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'open-uri'
+require 'json'
 # Delete records
 Booking.destroy_all
 Pokemon.destroy_all
@@ -19,7 +21,8 @@ ash = User.create(
   dob: '1/1/1990',
   phone_number: '(123) 234-9823',
   gender: 'M',
-  password: 'password'
+  password: 'password',
+  is_owner: true
 )
 
 misty = User.create(
@@ -33,44 +36,33 @@ misty = User.create(
 )
 
 
+
+
+names = []
+url = 'https://pokeapi.co/api/v2/pokemon?limit=20'
+json = open(url).read
+data = JSON.parse(json)['results']
+data.each do |result|
+  names << result['name']
+end
+
 # Create Pokemons
-Pokemon.create(
-  user: ash,
-  level: 25,
-  address: '2358 Lombard Street, San Francisco, CA, USA',
-  price_per_day: 50,
-  name: 'Pikachu',
-  category: 'electric',
-  rating: 0
-)
+count = 0
+names.each do |name|
+  url = "https://pokeapi.co/api/v2/pokemon/#{name}"
+  json = open(url).read
+  data = JSON.parse(json)
+  pokemon = Pokemon.new(
+    user: ash,
+    level: rand(0..25),
+    address: '2358 Lombard Street, San Francisco, CA, USA',
+    price_per_day: rand(0..50),
+    name: name,
+    category: data['types'][0]['type']['name'],
+    photo: data['sprites']['front_default']
+  )
+  count += 1
+  pokemon.save
+end
 
-Pokemon.create(
-  user: ash,
-  level: 25,
-  address: 'Conkal, 97345 Conkal, Yucatan, Mexico',
-  price_per_day: 50,
-  name: 'Charmander',
-  category: 'fire',
-  rating: 0
-)
-
-Pokemon.create(
-  user: misty,
-  level: 25,
-  address: '98456 15th Avenue, Prince George, BC, Canada',
-  price_per_day: 50,
-  name: 'Bulbasaur',
-  category: 'grass',
-  rating: 0
-)
-
-Pokemon.create(
-  user: misty,
-  level: 25,
-  address: 'Vyshovatyi, Zakarpattia Oblast, Ukraine, 90546',
-  price_per_day: 50,
-  name: 'Squirtle',
-  category: 'water',
-  rating: 0
-)
 
