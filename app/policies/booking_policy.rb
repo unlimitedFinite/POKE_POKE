@@ -1,14 +1,12 @@
-class PokemonPolicy < ApplicationPolicy
+class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # if user.is_owner?
-      #   score.where(user: current_user)
-      # else
-      #   scope.where()
-
-      # end
       scope.all
     end
+  end
+
+  def index?
+    true
   end
 
   def show?
@@ -16,11 +14,11 @@ class PokemonPolicy < ApplicationPolicy
   end
 
   def new?
-
+    record.user == user
   end
 
   def create?
-    true
+    record.user == user
   end
 
   def edit?
@@ -34,4 +32,5 @@ class PokemonPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
 end
