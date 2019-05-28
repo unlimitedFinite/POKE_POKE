@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.pokemon_id = params[:pokemon_id]
     @booking.user_id = current_user[:id]
+    @booking.price_paid = ((@booking.end_dt - @booking.start_dt) * @pokemon.price_per_day)
     @booking.save
     if @booking.save
       redirect_to bookings_path
