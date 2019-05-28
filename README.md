@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Conceptual pokemon rental platform. 
+
+Be an owner and rent out your excess Pokemon in exchange for $$$ or spend your hard earned $$$ to rent your favourite pokemon for some time
