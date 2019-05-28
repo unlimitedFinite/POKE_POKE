@@ -1,0 +1,15 @@
+<%= simple_form_for(@pokemon) do |f| %>
+  <%= f.label :name %> <br>
+  <%= f.text_field :name %> <br>
+
+  <%= f.label :level %> <br>
+  <%= f.text_field :level %> <br>
+
+  <%= f.label :address %> <br>
+  <%= f.text_field :address %> <br>
+
+  <%= f.label :price_per_day %> <br>
+  <%= f.text_field :price_per_day %> <br>
+
+  <%= f.submit %>
+<% end %>

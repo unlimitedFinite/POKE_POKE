@@ -6,7 +6,13 @@
   <br>
   <br>
   <br>
-  <h2>&nbsp;<%= @pokemon.name %></h2>
+  <h2>&nbsp;<%= @pokemon.name %>
+    <small>
+      <%= link_to edit_pokemon_path(@pokemon) do %>
+        <i class="fa fa-pencil-alt"></i>
+      <% end %>
+    </small>
+  </h2>
   <hr>
 
   <div class="card-show">
