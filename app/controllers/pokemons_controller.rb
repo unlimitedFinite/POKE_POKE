@@ -30,6 +30,8 @@ class PokemonsController < ApplicationController
   end
 
   def update
+    @pokemon.update(pokemon_params)
+    redirect_to pokemon_path(@pokemon)
   end
 
   private
@@ -39,7 +41,7 @@ class PokemonsController < ApplicationController
   end
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :level, :price_per_day, :address)
+    params.require(:pokemon).permit(:name, :level, :price_per_day, :address, :is_active)
   end
 
   def get_pokemon_info(name)
