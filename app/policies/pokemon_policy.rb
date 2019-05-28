@@ -12,12 +12,8 @@ class PokemonPolicy < ApplicationPolicy
     true
   end
 
-  def new?
-    # not needed
-  end
-
   def create?
-    record.user == user
+    true
   end
 
   def edit?
