@@ -37,9 +37,7 @@
 
   <div class="card-show">
     <div class="image">
-      <% if @pokemon.photo.present? %>
-        <%= cl_image_tag @pokemon.photo, width: 350, crop: :scale %>
-      <% end %>
+        <%= image_path @pokemon.photo, width: 350, crop: :fill %>
     </div>
     <div class="container">
       <div class="row">
