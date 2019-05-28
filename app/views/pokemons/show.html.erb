@@ -1,9 +1,9 @@
 <div class="container">
-  <h1>Pokemon Booking Form</h1>
-  <br>
-  <br>
+  <h1>Pokemon Listing Details</h1>
   <br>
   <h2>&nbsp;<%= @pokemon.name %>
+
+  <% if policy(@pokemon).edit? %>
     <small>
       <%= link_to edit_pokemon_path(@pokemon) do %>
         <i class="fa fa-pencil-alt"></i>
@@ -32,12 +32,16 @@
         <% end %>
       <% end %>
     </small>
+  <% end %>
+
   </h2>
   <hr>
 
   <div class="card-show">
     <div class="image">
-        <%= image_tag @pokemon.photo, width: 200, crop: :scale %>
+
+        <%= image_tag @pokemon.photo, width: 200, crop: :scale %
+        
     </div>
     <div class="container">
       <div class="row">

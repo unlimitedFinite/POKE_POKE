@@ -1,0 +1,35 @@
+
+
+.card-bookings {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  align-items: center !important;
+}
+
+.card-bookings > img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.card-bookings h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-bookings p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-bookings .card-bookings-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+

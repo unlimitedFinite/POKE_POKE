@@ -10,20 +10,8 @@ class BookingPolicy < ApplicationPolicy
     # not used
   end
 
-  def new?
-    # not needed since in ApplicationPolicy
-  end
-
   def create?
     true
-  end
-
-  def edit?
-    # not needed, defer to delete booking
-  end
-
-  def update?
-    # not needed, defer to delete booking
   end
 
   def destroy?

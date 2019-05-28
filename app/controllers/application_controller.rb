@@ -10,6 +10,12 @@ after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 # as `authenticate_user!` (or whatever your resource is) will halt the filter chain and redirect
 # before the location can be stored.
 
+# rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+#   def user_not_authorized
+#     flash[:alert] = "You are not authorized to perform this action."
+#     redirect_to(root_path)
+#   end
+
 private
   # Its important that the location is NOT stored if:
   # - The request method is not GET (non idempotent)
@@ -25,12 +31,6 @@ private
     store_location_for(:user, request.fullpath)
   end
 
-
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(root_path)
-  end
 
   private
 
