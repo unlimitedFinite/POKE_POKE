@@ -5,7 +5,6 @@ class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_pokemon, only: [:show, :update, :edit]
 
-
   def index
     @pokemons = policy_scope(Pokemon)
   end

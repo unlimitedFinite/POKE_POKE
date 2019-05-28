@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
     @pokemons = Pokemon.all
     @user = current_user
+    authorize @booking
   end
 
   def show
@@ -14,11 +15,13 @@ class BookingsController < ApplicationController
   def new
     @pokemon = Pokemon.find(params[:pokemon_id])
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
     @pokemon = Pokemon.find(params[:pokemon_id])
     @booking = Booking.new(booking_params)
+    authorize @booking
     @booking.pokemon_id = params[:pokemon_id]
     @booking.user_id = current_user[:id]
     @booking.price_paid = ((@booking.end_dt - @booking.start_dt) * @pokemon.price_per_day)
@@ -43,5 +46,6 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_dt, :end_dt)
+    authorize @booking
   end
 end
