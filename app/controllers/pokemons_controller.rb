@@ -30,6 +30,8 @@ class PokemonsController < ApplicationController
   end
 
   def update
+    @pokemon.update(pokemon_params)
+    redirect_to pokemon_path(@pokemon)
   end
 
   private
