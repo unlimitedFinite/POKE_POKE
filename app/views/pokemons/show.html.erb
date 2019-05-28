@@ -1,9 +1,8 @@
-<h1>Pokemons#show</h1>
-<p>Find me in app/views/pokemons/show.html.erb</p>
-
+<%= render 'shared/navbar' %>
 
 
 <div class="container">
+  <h1>Pokemon Booking Form</h1>
   <br>
   <br>
   <br>
@@ -21,11 +20,17 @@
         <div class="col-sm">
           <div class="list">
 
-            <p><strong>pokemon details and booking form</strong></>
+            <p><strong>Pokemon details</strong></>
+              <li>Name: <%= @pokemon.name %></li>
+              <li>Type: <%= @pokemon.category %></li>
+              <li>Level: <%= @pokemon.level %></li>
+              <li>Location: <%= @pokemon.address %>/li>
+              <li>Rating: <%= @pokemon.rating %></li>
+              <li>Price: <%= @pokemon.price_per_day %></li>
+              <br>
 
           </div>
         </div>
-
         <div class="col-sm">
           <%= render "bookings/new" %>
         </div>

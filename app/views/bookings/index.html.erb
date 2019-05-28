@@ -1,2 +1,10 @@
 <h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<p>Bookings for user with email: <%= @user.email %></p>
+<ul>
+  <% @bookings.each do |b| %>
+  <li>FROM: <%= b.start_dt %>, TO: <%= b.end_dt %></li>
+  <li>Hired for <%= (b.end_dt - b.start_dt) %> days</li>
+  <li><%= @pokemons.find(b.pokemon_id).name %></li>
+  <li><%= @pokemons.find(b.pokemon_id).category %></li>
+</ul>
+<% end %>
