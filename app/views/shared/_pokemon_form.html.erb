@@ -1,15 +1,29 @@
-<%= simple_form_for(@pokemon) do |f| %>
-  <%= f.label :name %> <br>
-  <%= f.text_field :name %> <br>
+<div class="container">
+  <%= simple_form_for(@pokemon) do |f| %>
+    <% if @pokemon.errors.any? %>
+      <div class="errors-container">
+        <ul>
+          <% @pokemon.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :name, "Pokemon", class: "input-control" %> <br>
+      <%= f.text_field :name, class: "form-control" %> <br>
 
-  <%= f.label :level %> <br>
-  <%= f.text_field :level %> <br>
+      <%= f.label :level, class: "input-control" %> <br>
+      <%= f.text_field :level, class: "form-control"  %> <br>
 
-  <%= f.label :address %> <br>
-  <%= f.text_field :address %> <br>
+      <%= f.label :address, class: "input-control" %> <br>
+      <%= f.text_field :address, class: "form-control" %> <br>
 
-  <%= f.label :price_per_day %> <br>
-  <%= f.text_field :price_per_day %> <br>
+      <%= f.label :price_per_day, class: "input-control" %> <br>
+      <%= f.text_field :price_per_day, class: "form-control" %> <br>
 
-  <%= f.submit %>
-<% end %>
+      <%= f.submit "Submt Pokemon", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+

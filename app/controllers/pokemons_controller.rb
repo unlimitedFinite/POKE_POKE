@@ -2,10 +2,11 @@ require 'open-uri'
 require 'json'
 
 class PokemonsController < ApplicationController
-  before_action :set_pokemon, only: [:show, :update, :edit]
+  skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_pokemon, only: [:show, :update, :edit, :destroy]
 
   def index
-    @pokemons = Pokemon.all
+    @pokemons = policy_scope(Pokemon)
   end
 
   def show
@@ -14,31 +15,47 @@ class PokemonsController < ApplicationController
 
   def new
     @pokemon = Pokemon.new
+    authorize @pokemon
   end
 
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
+    authorize @pokemon
 
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
     @pokemon.photo = pokemon_info['sprites']['front_default']
-    @pokemon.save!
-    redirect_to pokemon_path(@pokemon)
+    if @pokemon.save
+      @pokemon.user.is_owner = true
+      @pokemon.user.save
+      redirect_to pokemon_path(@pokemon)
+    else
+      render :new
+    end
+
   end
 
   def edit
   end
 
   def update
-    @pokemon.update(pokemon_params)
-    redirect_to pokemon_path(@pokemon)
+    if @pokemon.update(pokemon_params)
+      redirect_to pokemon_path(@pokemon)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @pokemon.destroy
   end
 
   private
 
   def set_pokemon
     @pokemon = Pokemon.find(params[:id])
+    authorize @pokemon
   end
 
   def pokemon_params
