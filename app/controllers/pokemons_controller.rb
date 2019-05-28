@@ -2,10 +2,12 @@ require 'open-uri'
 require 'json'
 
 class PokemonsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_pokemon, only: [:show, :update, :edit]
 
+
   def index
-    @pokemons = Pokemon.all
+    @pokemons = policy_scope(Pokemon)
   end
 
   def show
@@ -14,11 +16,13 @@ class PokemonsController < ApplicationController
 
   def new
     @pokemon = Pokemon.new
+    authorize @pokemon
   end
 
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
+    authorize @pokemon
 
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
@@ -45,6 +49,7 @@ class PokemonsController < ApplicationController
 
   def set_pokemon
     @pokemon = Pokemon.find(params[:id])
+    authorize @pokemon
   end
 
   def pokemon_params
