@@ -22,16 +22,23 @@ class PokemonsController < ApplicationController
 
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
-    @pokemon.save!
-    redirect_to pokemon_path(@pokemon)
+
+    if @pokemon.save
+      redirect_to pokemon_path(@pokemon)
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @pokemon.update(pokemon_params)
-    redirect_to pokemon_path(@pokemon)
+    if @pokemon.update(pokemon_params)
+      redirect_to pokemon_path(@pokemon)
+    else
+      render :edit
+    end
   end
 
   private

@@ -1,5 +1,14 @@
 <div class="container">
   <%= simple_form_for(@pokemon) do |f| %>
+    <% if @pokemon.errors.any? %>
+      <div class="errors-container">
+        <ul>
+          <% @pokemon.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="form-group">
       <%= f.label :name, class: "input-control" %> <br>
       <%= f.text_field :name, class: "form-control" %> <br>
