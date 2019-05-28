@@ -27,6 +27,8 @@ class PokemonsController < ApplicationController
     @pokemon.category = pokemon_info['types'][0]['type']['name']
 
     if @pokemon.save
+      @pokemon.user.is_owner = true
+      @pokemon.user.save
       redirect_to pokemon_path(@pokemon)
     else
       render :new
