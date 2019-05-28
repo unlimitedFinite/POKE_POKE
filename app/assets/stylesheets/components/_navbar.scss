@@ -1,12 +1,55 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background-color: #ffff004f;
 }
+
+.navbar-brand {
+  font-family: $gaming-font;
+  font-size: 1em;
+}
+
+.nav-item {
+  font-family: $gaming-font;
+  font-size: 0.8em;
+  color: black;
+}
+
+.navbar-lewagon span {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-lewagon span li {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 32px;
+  height: 32px;
+}
+
+.dropdown-menu {
+  background-color: #fffbb3;
+  font-family: $gaming-font;
+  font-size: 0.9em;
+}
+
+.dropdown-item {
+  transition: 1s;
+}
+
+.dropdown-item:hover {
+  background-color: #fffbb3;
+  transition: 1s;
+  font-size: 1.5em;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
 }

@@ -1,26 +1,50 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon navbar-fixed-top">
+  <%= link_to pokemons_path, class: "navbar-brand" do %>
+    <%= image_tag "https://res.cloudinary.com/deyw9z6tu/image/upload/v1559012403/PokePoke/pokeball_j7dyz0.png" %>
+    Poke Poke
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
+<% if user_signed_in? %>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to "Become an owner", "#", class: "nav-link" %>
+      <% if current_user.is_owner == false %>
+        <span><li>Currently logged in as user <%= current_user.email %></li></span>
+        <li class="nav-item active">
+            <%= link_to "Become an owner", new_pokemon_path, class: "nav-link" %>
+        </li>
+        <% end %>
+      <% if current_user.is_owner == true %>
+        <span><li>Currently logged in as owner <%= current_user.email %></li></span>
+        <li class="nav-item">
+          <%= link_to "My Pokemons", pokemons_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class='fas fa-user'></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to 'Logout', destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          <%= link_to 'Account', edit_user_registration_path, class: "dropdown-item" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <% else %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Bookings", "#", class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Log Out", destroy_user_session_path, class: "nav-link", method: :delete %>
+        <%= link_to ("<i class='fas fa-sign-in-alt'></i>").html_safe, new_user_session_path, class: "nav-link" %>
       </li>
       <li class="nav-item dropdown">
         <!--<%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>-->
@@ -31,4 +55,6 @@
       </li>
     </ul>
   </div>
+  <% end %>
+
 </div>
