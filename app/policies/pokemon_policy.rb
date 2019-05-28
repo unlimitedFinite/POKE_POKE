@@ -31,4 +31,12 @@ class PokemonPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def deactivate?
+    record.user == user
+  end
+
+  def reactivate?
+    record.user == user
+  end
 end
