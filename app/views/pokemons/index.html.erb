@@ -13,20 +13,35 @@
 
             <!-- <div class="inner-card"> -->
 
+            <% if policy(pokemon).show? %>
               <h2><%= link_to pokemon.name, pokemon_path(pokemon) %></h2>
+            <% end %>
+
+            <% if policy(pokemon).new? %>
+              <h2><%= link_to 'Add a pokemon', new_pokemon_path %></h2>
+            <% end %>
+
+            <% if policy(pokemom).edit? %>
+              <h2><%= link_to 'edit', edit_pokemon_path(pokemon) %></h2>
+            <% end %>
+
+            <% if policy(pokemon).destroy? %>
+              <h2><%= link_to 'destroy', pokemon_path(pokemon), method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+            <% end %>
+
             <!-- </div> -->
           </div>
         <% end %>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
-         <p>POKEMON PIC</p>
 
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
+         <p>POKEMON PIC</p>
 
       </div>
       <br>
