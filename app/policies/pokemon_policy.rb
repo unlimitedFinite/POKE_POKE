@@ -1,10 +1,7 @@
 class PokemonPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # if user.is_owner?
-      #   scope.where(user: current_user)
-      # else
-        scope.all
+      scope.all
     end
   end
 
@@ -12,12 +9,8 @@ class PokemonPolicy < ApplicationPolicy
     true
   end
 
-  def new?
-    # not needed
-  end
-
   def create?
-    record.user == user
+    true
   end
 
   def edit?

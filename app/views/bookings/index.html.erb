@@ -1,12 +1,31 @@
-<h1>Bookings#index</h1>
-<p>Bookings for user with email: <%= @user.email %></p>
 
-<% @bookings.each do |b| %>
-  <ul>
-    <li>FROM: <%= b.start_dt %>, TO: <%= b.end_dt %></li>
-    <li>Hired for <%= (b.end_dt - b.start_dt) %> days</li>
-    <li><%= @pokemons.find(b.pokemon_id).name %></li>
-    <li><%= @pokemons.find(b.pokemon_id).category %></li>
-    </p><%= link_to 'delete booking', booking_path(b), method: :delete, data: { confirm: "Are you sure?" } %></p>
-  </ul>
-<% end %>
+<div class="container">
+
+  <h1>My Bookings</h1>
+  <p>Bookings for user with email: <%= @user.email %></p>
+
+  <% @bookings.each do |b| %>
+
+    <div class="card-bookings d-flex">
+      <%= image_tag @pokemons.find(b.pokemon_id).photo %>
+
+      <div class="card-bookings-infos">
+        <ul>
+          <li><strong>From: </strong><%= b.start_dt %>, <strong>To: </strong><%= b.end_dt %></li>
+          <li><strong>Hired for: </strong><%= (b.end_dt - b.start_dt) %> days</li>
+          <li><strong>Name: </strong><%= @pokemons.find(b.pokemon_id).name %></li>
+          <li><strong>Category: </strong><%= @pokemons.find(b.pokemon_id).category %></li>
+          <li><strong>Total Price: </strong><%= b.price_paid %></li>
+          <br>
+        </ul>
+      </div>
+
+      <div>
+        </p><%= link_to 'cancel booking', booking_path(b), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?" } %></p>
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
