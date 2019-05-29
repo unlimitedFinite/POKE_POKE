@@ -6,6 +6,7 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
+    # raise
     @pokemons = policy_scope(Pokemon)
 
     @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
@@ -17,6 +18,7 @@ class PokemonsController < ApplicationController
         infoWindow: render_to_string(partial: "infowindow", locals: { location: location })
       }
     end
+
   end
 
   def inventory
