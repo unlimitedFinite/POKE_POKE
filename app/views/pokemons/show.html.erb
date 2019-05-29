@@ -11,24 +11,10 @@
       <% if @pokemon.is_active %>
         <%= link_to deactivate_path(@pokemon), method: :patch do %>
           <i class="fas fa-circle" style="color: green;"></i>
-          <% flash.each do |key, value| %>
-            <div class="alert alert-warning">
-              <%= value %>
-            </div>
-          <% end %>
-
-          <%= yield %>
         <% end %>
       <% else %>
         <%= link_to reactivate_path(@pokemon), method: :patch do %>
           <i class="fas fa-circle" style="color: red;"></i>
-          <% flash.each do |key, value| %>
-            <div class="alert alert-success">
-              <%= value %>
-            </div>
-          <% end %>
-
-          <%= yield %>
         <% end %>
       <% end %>
     </small>
