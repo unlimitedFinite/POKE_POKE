@@ -15,6 +15,8 @@ class PokemonsController < ApplicationController
 
   def new
     @pokemon = Pokemon.new
+    @names = get_names
+
     authorize @pokemon
   end
 
@@ -26,6 +28,7 @@ class PokemonsController < ApplicationController
     pokemon_info = get_pokemon_info(@pokemon.name.downcase)
     @pokemon.category = pokemon_info['types'][0]['type']['name']
     @pokemon.photo = pokemon_info['sprites']['front_default']
+
     if @pokemon.save
       @pokemon.user.is_owner = true
       @pokemon.user.save
@@ -33,7 +36,6 @@ class PokemonsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def edit
@@ -70,6 +72,17 @@ class PokemonsController < ApplicationController
 
   def pokemon_params
     params.require(:pokemon).permit(:name, :level, :price_per_day, :address)
+  end
+
+  def get_names
+    names = []
+    url = 'https://pokeapi.co/api/v2/pokemon?limit=20'
+    json = open(url).read
+    data = JSON.parse(json)['results']
+    data.each do |result|
+      names << result['name']
+    end
+    return names
   end
 
   def get_pokemon_info(name)
