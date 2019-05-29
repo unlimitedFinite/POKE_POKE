@@ -1,8 +1,7 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
-      # handles booking index view after booking is made
+      scope.where(user: user)
     end
   end
 
