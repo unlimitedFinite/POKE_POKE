@@ -1,0 +1,35 @@
+
+<div class="container">
+  <h3>Your Bookings</h3>
+  <div class="card-container">
+    <% @pokemon.bookings.each do |booking| %>
+      <div class="card-product p-3">
+        <div class="card-product-infos">
+          <div class="row">
+            <div class="col justify-around">
+              <h2>
+                <% if (Time.now > booking.end_dt) %>
+                  <span class="ml-3 mb-2 badge badge-pill badge-info">Booking complete!</span>
+                <% else %>
+                  <%= link_to 'Cancel', booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:'ml-3 mb-2 badge badge-pill badge-danger' %>
+                <% end %>
+              </h2>
+              <li><%= (booking.end_dt - booking.start_dt).to_i %> days</li>
+              <li>Booking start: <%= booking.start_dt.to_formatted_s(:rfc822) %></li>
+              <li>Booking ended: <%= booking.end_dt.to_formatted_s(:rfc822)   %></li>
+              <%# else %>
+                <!-- <img class= 'completed' src="https://res.cloudinary.com/deyw9z6tu/image/upload/c_scale,q_61,r_10,w_100/v1559055260/PokePoke/completed_nje2az.png"> -->
+            </div>
+            <div class="col justify-around text-right">
+              <h2>Price: $<%= booking.price_paid %> </h2>
+
+              <p>Renter: <%= User.find(booking.user.id).first_name %></p>
+              <p>Booking ID: <%= booking.id %></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

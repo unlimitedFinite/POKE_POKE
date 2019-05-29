@@ -43,8 +43,12 @@
 
           </div>
         </div>
-        <div class="col-sm">
-          <%= render "bookings/new" %>
+        <div class="col-8">
+          <% if policy(@pokemon).edit? %>
+            <%= render "bookings/pokemon_list" %>
+          <% else %>
+            <%= render "bookings/new" %>
+          <% end %>
         </div>
 
       </div>
