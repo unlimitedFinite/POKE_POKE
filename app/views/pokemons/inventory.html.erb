@@ -1,28 +1,60 @@
 <div class="container">
   <h5>Pokemon Inventory for <%= current_user.first_name %></h5>
-    <%= link_to "Add new Pokemon", new_pokemon_path, class: "btn btn-primary" %>
-  <div class="card-container">
-    <% @pokemons.each do |pokemon| %>
-      <%= link_to pokemon_path(pokemon) do  %>
-        <div class="card-product">
-          <img src="<%= pokemon.photo %>">
-          <div class="card-product-infos">
-            <div class="row">
-              <div class="col-6 justify-around">
-                <h2><%= pokemon.name.titleize %></h2>
-                <p>This pokemon is a <strong><%= pokemon.category %></strong> type.</p>
-                <p>Level <%= pokemon.level %></p>
-              </div>
-              <div class="col-6 justify-around text-right">
-                <h2>Will show total revenue here</h2>
-                <br>
-                <p>Rating: <%= pokemon.rating %></p>
-              </div>
+  <%= link_to "Add new Pokemon", new_pokemon_path, class: "btn btn-primary m-2" %>
+  <div class="card-container" id="target">
+    <% @pokemons.each_with_index do |pokemon, index| %>
+      <div class="card-product" data-toggle="collapse" data-parent="#target" href="#collapse<%= index + 1 %>">
+        <%= link_to pokemon_path(pokemon) do  %>
+        <img src="<%= pokemon.photo %>">
+         <% end %>
+        <div class="card-product-infos">
+          <div class="row">
+            <div class="col-6 justify-around">
+              <h2><%= pokemon.name.titleize %></h2>
+              <p>This pokemon is a <strong><%= pokemon.category %></strong> type.</p>
+              <p>Level <%= pokemon.level %></p>
+            </div>
+            <div class="col-6 justify-around text-right">
+              <h2>Will show total revenue here</h2>
+              <br>
+              <p>Rating: <%= pokemon.rating %></p>
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
+      <% if pokemon.bookings.length > 0 %>
+    <div id="collapse<%= index+1 %>" class="panel-collapse collapse">
+      <div class="container">
+        <div class="card-container">
+          <% pokemon.bookings.each do |booking| %>
+            <div class="card-product p-3">
+              <div class="card-product-infos">
+                <div class="row">
+                  <div class="col justify-between">
+                    <h2>
+                      Booking ID: <%= booking.id %>
+                      <small> - Renter: <%= User.find(booking.user.id).first_name %></small>
+                      <% if (Time.now > booking.end_dt) %>
+                        <span class="ml-3 mb-2 badge badge-pill badge-info">Booking complete!</span>
+                      <% else %>
+                        <%= link_to 'Cancel', booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:'ml-3 mb-2 badge badge-pill badge-danger' %>
+                      <% end %>
+                    </h2>
+                    <li><%= booking.start_dt.to_formatted_s(:rfc822) %> to <%= booking.end_dt.to_formatted_s(:rfc822)   %></li>
+                    <%# else %>
+                      <!-- <img class= 'completed' src="https://res.cloudinary.com/deyw9z6tu/image/upload/c_scale,q_61,r_10,w_100/v1559055260/PokePoke/completed_nje2az.png"> -->
+                  </div>
+                  <div class="col justify-around text-right">
+                    <h2>Total: $<%= booking.price_paid %> </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
-   </div>
-
+    <% end %>
+  </div>
 </div>
