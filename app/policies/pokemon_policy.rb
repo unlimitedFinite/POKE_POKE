@@ -1,7 +1,7 @@
 class PokemonPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where.not(user: user)
     end
   end
 
