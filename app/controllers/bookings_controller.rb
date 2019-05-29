@@ -34,13 +34,13 @@ class BookingsController < ApplicationController
   def destroy
     if @booking.start_dt < Time.now
       redirect_to bookings_path
-      flash[:alert] = "Cannot cancel booking after #{@booking.start_dt}."
+      flash[:failure] = "Cannot cancel booking after #{@booking.start_dt}."
     elsif @booking.start_dt < Date.yesterday
       redirect_to bookings_path
-      flash[:notice] = "Cannot cancel booking with less than 24 hours notice."
+      flash[:failure] = "Cannot cancel booking with less than 24 hours notice."
     else
       @booking.destroy
-      flash[:notice] = "Deleted booking."
+      flash[:success] = "Deleted booking."
       redirect_to bookings_path
     end
   end
