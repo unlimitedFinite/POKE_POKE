@@ -16,7 +16,6 @@ class PokemonsController < ApplicationController
   def new
     @pokemon = Pokemon.new
     @names = get_names
-
     authorize @pokemon
   end
 
@@ -39,6 +38,7 @@ class PokemonsController < ApplicationController
   end
 
   def edit
+    @names = get_names
   end
 
   def update
