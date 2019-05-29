@@ -1,0 +1,28 @@
+<div class="container">
+  <h5>Pokemon Inventory for <%= current_user.first_name %></h5>
+    <%= link_to "Add new Pokemon", new_pokemon_path, class: "btn btn-primary" %>
+  <div class="card-container">
+    <% @pokemons.each do |pokemon| %>
+      <%= link_to pokemon_path(pokemon) do  %>
+        <div class="card-product">
+          <img src="<%= pokemon.photo %>">
+          <div class="card-product-infos">
+            <div class="row">
+              <div class="col-6 justify-around">
+                <h2><%= pokemon.name.titleize %></h2>
+                <p>This pokemon is a <strong><%= pokemon.category %></strong> type.</p>
+                <p>Level <%= pokemon.level %></p>
+              </div>
+              <div class="col-6 justify-around text-right">
+                <h2>Will show total revenue here</h2>
+                <br>
+                <p>Rating: <%= pokemon.rating %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+   </div>
+
+</div>
