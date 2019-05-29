@@ -1,18 +1,6 @@
 <div class="container">
-  <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
-  <div class="d-flex justify-content-between">
-    <input id="index-search" class="m-3" type="text" placeholder="Find your favourite pokemon today...">
-    <%= link_to 'Search', pokemons_path, class:'mt-3 mb-3 btn btn-success' %>
-  </div>
-  <div
-    id="map"
-    style="width: 100%;
-    height: 350px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  >
-  </div>
-
+  <h5>Pokemon Inventory for <%= current_user.first_name %></h5>
+    <%= link_to "Add new Pokemon", new_pokemon_path, class: "btn btn-primary" %>
   <div class="card-container">
     <% @pokemons.each do |pokemon| %>
       <%= link_to pokemon_path(pokemon) do  %>
@@ -26,9 +14,9 @@
                 <p>Level <%= pokemon.level %></p>
               </div>
               <div class="col-6 justify-around text-right">
-                <h2>$<%= pokemon.price_per_day %> per day</h2>
+                <h2>Will show total revenue here</h2>
+                <br>
                 <p>Rating: <%= pokemon.rating %></p>
-                <p>Owner: <%= pokemon.user.first_name %></p>
               </div>
             </div>
           </div>
@@ -36,4 +24,5 @@
       <% end %>
     <% end %>
    </div>
+
 </div>

@@ -1,3 +1,42 @@
+<!-- Modals -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "devise/registrations/new", locals: { resource: User.new, resource_name: 'user' } %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "devise/sessions/new", locals: { resource: User.new, resource_name: 'user' } %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to pokemons_path, class: "navbar-brand" do %>
     <%= image_tag "https://res.cloudinary.com/deyw9z6tu/image/upload/v1559012403/PokePoke/pokeball_j7dyz0.png" %>
@@ -12,18 +51,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if current_user.is_owner == false %>
-        <span class="mr-2"><li>Currently logged in as user <%= current_user.email %></li></span>
         <li class="nav-item active">
             <%= link_to "Become an owner", new_pokemon_path, class: "nav-link" %>
         </li>
         <% end %>
       <% if current_user.is_owner == true %>
-        <span class="mr-2"><li>Currently logged in as owner <%= current_user.email %></li></span>
         <li class="nav-item">
-          <%= link_to "My Pokemon", pokemons_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Add new Pokemon", new_pokemon_path, class: "nav-link" %>
+          <%= link_to "My Pokemon | ", inventory_path, class: "nav-link" %>
         </li>
       <% end %>
       <li class="nav-item">
@@ -44,10 +78,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+        <button type="button" class="btn" data-toggle="modal" data-target="#registerModal">
+        Sign Up |
+        </button>
       </li>
       <li class="nav-item">
-        <%= link_to ("<i class='fas fa-sign-in-alt'></i>").html_safe, new_user_session_path, class: "nav-link" %>
+        <button type="button" class="btn" data-toggle="modal" data-target="#loginModal">
+        Login
+        </button>
       </li>
       <li class="nav-item dropdown">
         <!--<%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>-->
@@ -59,5 +97,4 @@
     </ul>
   </div>
   <% end %>
-
 </div>

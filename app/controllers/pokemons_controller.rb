@@ -6,6 +6,7 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
+    # raise
     @pokemons = policy_scope(Pokemon)
 
     @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
@@ -18,6 +19,13 @@ class PokemonsController < ApplicationController
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected })
       }
     end
+
+  end
+
+  def inventory
+    @user = current_user
+    @pokemons = Pokemon.where(user: @user)
+    authorize @pokemons
   end
 
   def show
@@ -63,7 +71,7 @@ class PokemonsController < ApplicationController
   def deactivate
     @pokemon.is_active = false
     @pokemon.save
-    flash[:alert] = "#{@pokemon.name} is deactivated."
+    flash[:success] = "#{@pokemon.name} is deactivated."
     redirect_to pokemon_path(@pokemon)
   end
 
