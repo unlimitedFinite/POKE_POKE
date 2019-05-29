@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl';
-
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 const initMapbox = () => {
@@ -31,8 +30,12 @@ const initMapbox = () => {
       });
     };
 
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken }));
+    map.addControl(new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl
+    }));
   }
+
 }
 
 export { initMapbox };
