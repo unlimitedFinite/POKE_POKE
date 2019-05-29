@@ -12,7 +12,8 @@
     <div class="form-group pt-3 pb-4">
 
       <%= f.label :name, "Pokemon", class: "input-control" %> <br>
-      <%= f.select :name, options_for_select(@names), class: "form-control" %> <br><br>
+      <%= f.select :name, options_for_select(@names), class: "form-control select2" %>
+      <br><br>
 
       <%= f.label :level, class: "input-control" %> <br>
       <%= f.text_field :level, class: "form-control"  %> <br>
@@ -28,3 +29,4 @@
   <% end %>
 </div>
 
+<!-- <select id="city-input" class="select2"></select> -->

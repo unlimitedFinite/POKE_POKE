@@ -10,16 +10,15 @@ class PokemonsController < ApplicationController
     @pokemons = policy_scope(Pokemon)
 
     @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
-    # @pokemon_selected = Pokemon.where(latitude: latitude, longitude: longitude)
 
     @markers = @pokemon_location.map do |selected|
       {
         lat: selected.latitude,
         lng: selected.longitude,
-        infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected })
+        infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
+        image_url: helpers.asset_url('pokeball.png')
       }
     end
-
   end
 
   def inventory

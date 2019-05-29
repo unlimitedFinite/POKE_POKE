@@ -7,3 +7,7 @@ initMapbox();
 
 import { initAutocomplete } from '../plugins/init_autocomplete.js';
 initAutocomplete();
+
+import { initSelect2 } from '../plugins/init_select2';
+import 'select2/dist/css/select2.css';
+initSelect2();
