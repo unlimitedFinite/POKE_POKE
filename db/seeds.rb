@@ -53,7 +53,7 @@ names.each do |name|
   pokemon = Pokemon.new(
     user: ash,
     level: rand(0..25),
-    address: Faker::Address.full_address,
+    address: Faker::Address.city,
     price_per_day: rand(0..50),
     name: name,
     category: data['types'][0]['type']['name'],
