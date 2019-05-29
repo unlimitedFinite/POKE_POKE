@@ -8,6 +8,15 @@ class PokemonsController < ApplicationController
   def index
     @pokemons = policy_scope(Pokemon)
 
+    @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
+
+    @markers = @pokemon_location.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { location: location })
+      }
+    end
   end
 
   def inventory
