@@ -19,7 +19,7 @@
                 <% end %>
               </h2>
               <li><%= (booking.end_dt - booking.start_dt).to_i %> days</li>
-              <li>Booking start: <%= booking.start_dt.to_formatted_s(:rfc822)§ %></li>
+              <li>Booking start: <%= booking.start_dt.to_formatted_s(:rfc822) %></li>
               <li>Booking ended: <%= booking.end_dt.to_formatted_s(:rfc822)   %></li>
               <%# else %>
                 <!-- <img class= 'completed' src="https://res.cloudinary.com/deyw9z6tu/image/upload/c_scale,q_61,r_10,w_100/v1559055260/PokePoke/completed_nje2az.png"> -->
