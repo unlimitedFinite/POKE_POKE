@@ -37,7 +37,7 @@ misty = User.create(
 
 
 names = []
-url = 'https://pokeapi.co/api/v2/pokemon?limit=20'
+url = 'https://pokeapi.co/api/v2/pokemon?limit=50'
 json = open(url).read
 data = JSON.parse(json)['results']
 data.each do |result|
@@ -53,7 +53,7 @@ names.each do |name|
   pokemon = Pokemon.new(
     user: ash,
     level: rand(0..25),
-    address: '2358 Lombard Street, San Francisco, CA, USA',
+    address: Faker::Address.full_address,
     price_per_day: rand(0..50),
     name: name,
     category: data['types'][0]['type']['name'],
