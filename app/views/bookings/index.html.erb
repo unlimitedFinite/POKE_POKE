@@ -26,7 +26,7 @@
             <div class="col-6 justify-around text-right">
               <h2>$<%= booking.price_paid %> </h2>
               <p>Rating: <%= pokemon.rating %></p>
-              <p>User: <%= User.find(booking.user_id).email %></p>
+              <p>User: <%= User.find(booking.user_id).first_name %></p>
             </div>
           </div>
         </div>
