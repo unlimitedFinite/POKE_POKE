@@ -1,14 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
-// const addMarkersToMap = (map, markers) => {
-//   markers.forEach((marker) => {
-//     console.log(marker.infoWindow);
-//     new mapboxgl.Marker()
-//       .setLngLat([ marker.lng, marker.lat ])
-//       .addTo(map);
-//   });
-// };
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -29,7 +21,6 @@ const initMapbox = () => {
       .setPopup(popup) // add this
       .addTo(map);
     });
-
 
     map.addControl(new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
