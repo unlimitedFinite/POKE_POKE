@@ -15,7 +15,13 @@
               <p>Level <%= pokemon.level %></p>
             </div>
             <div class="col-6 justify-around text-right">
-              <h2>Will show total revenue here</h2>
+              <h2>
+                <% sum = 0 %>
+                <% pokemon.bookings.each do |b| %>
+                  <% sum += b.price_paid.to_i %>
+                  <% end %>
+                  Income: $<%= sum %>
+              </h2>
               <br>
               <p>Rating: <%= pokemon.rating %></p>
             </div>
