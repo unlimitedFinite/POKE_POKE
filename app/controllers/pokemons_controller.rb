@@ -7,6 +7,13 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon)
+
+  end
+
+  def inventory
+    @user = current_user
+    @pokemons = Pokemon.where(user: @user)
+    authorize @pokemons
   end
 
   def show

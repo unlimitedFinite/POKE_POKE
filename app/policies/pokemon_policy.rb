@@ -9,6 +9,10 @@ class PokemonPolicy < ApplicationPolicy
     true
   end
 
+  def inventory?
+    true
+  end
+
   def create?
     true
   end

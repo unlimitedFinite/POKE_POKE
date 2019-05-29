@@ -14,6 +14,10 @@ class ApplicationPolicy
     false
   end
 
+  def inventory?
+    false
+  end
+
   def new?
     create?
   end
