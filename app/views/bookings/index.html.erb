@@ -27,8 +27,10 @@
             <div class="col-6 justify-around text-right">
               <h2>Price: $<%= booking.price_paid %> </h2>
               <p>Rating: <%= pokemon.rating %></p>
+
               <p>Owner: <%= User.find(pokemon.user.id).first_name %></p>
               <p>Booking ID: <%= booking.id %></p>
+
             </div>
           </div>
         </div>
