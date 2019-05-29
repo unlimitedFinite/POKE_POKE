@@ -10,12 +10,13 @@ class PokemonsController < ApplicationController
     @pokemons = policy_scope(Pokemon)
 
     @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
+    # @pokemon_selected = Pokemon.where(latitude: latitude, longitude: longitude)
 
-    @markers = @pokemon_location.map do |location|
+    @markers = @pokemon_location.map do |selected|
       {
-        lat: location.latitude,
-        lng: location.longitude,
-        infoWindow: render_to_string(partial: "infowindow", locals: { location: location })
+        lat: selected.latitude,
+        lng: selected.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected })
       }
     end
 
