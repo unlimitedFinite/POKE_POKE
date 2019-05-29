@@ -10,7 +10,20 @@
         <div class="card-product-infos">
           <div class="row">
             <div class="col-6 justify-around">
-              <h2><%= pokemon.name.titleize %></h2>
+              <h2>
+                <%= pokemon.name.titleize %>
+                <% active = 0 %>
+                <% past = 0 %>
+                <% pokemon.bookings.each do |b| %>
+                  <% if b.end_dt > Time.now %>
+                    <% active += 1 %>
+                  <% else %>
+                    <% past += 1 %>
+                  <% end %>
+                <% end %>
+                <span class="badge badge-pill badge-success"><%= active unless active == 0 %></span>
+                <span class="badge badge-pill badge-info"><%= past unless past == 0 %></span>
+              </h2>
               <p>This pokemon is a <strong><%= pokemon.category %></strong> type.</p>
               <p>Level <%= pokemon.level %></p>
             </div>
