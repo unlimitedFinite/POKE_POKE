@@ -68,7 +68,7 @@ class PokemonsController < ApplicationController
   def deactivate
     @pokemon.is_active = false
     @pokemon.save
-    flash[:alert] = "#{@pokemon.name} is deactivated."
+    flash[:success] = "#{@pokemon.name} is deactivated."
     redirect_to pokemon_path(@pokemon)
   end
 
