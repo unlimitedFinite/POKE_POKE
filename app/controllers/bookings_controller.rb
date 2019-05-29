@@ -2,10 +2,9 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :destroy]
 
   def index
-    @bookings = Booking.all
     @pokemons = Pokemon.all
     @user = current_user
-    @bookings = policy_scope(Booking)
+    @bookings = policy_scope(Booking).order(start_dt: :desc)
   end
 
   def show

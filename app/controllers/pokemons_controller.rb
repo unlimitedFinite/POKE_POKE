@@ -19,6 +19,12 @@ class PokemonsController < ApplicationController
     end
   end
 
+  def inventory
+    @user = current_user
+    @pokemons = Pokemon.where(user: @user)
+    authorize @pokemons
+  end
+
   def show
     @booking = Booking.new
   end
