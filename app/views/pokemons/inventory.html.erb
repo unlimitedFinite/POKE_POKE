@@ -60,6 +60,11 @@
                       <% end %>
                     </h2>
                     <li><%= booking.start_dt.to_formatted_s(:rfc822) %> to <%= booking.end_dt.to_formatted_s(:rfc822)   %></li>
+                           <li><% raise %>
+
+                <%= link_to "booking show page", booking_reviews_new_path(booking_id) %>
+
+              </li>
                     <%# else %>
                       <!-- <img class= 'completed' src="https://res.cloudinary.com/deyw9z6tu/image/upload/c_scale,q_61,r_10,w_100/v1559055260/PokePoke/completed_nje2az.png"> -->
                   </div>

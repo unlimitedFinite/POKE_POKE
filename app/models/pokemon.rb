@@ -4,6 +4,7 @@ class Pokemon < ApplicationRecord
 
   belongs_to :user
   has_many :bookings
+  has_many :reviews
 
   validates :name, :level, :category, :price_per_day, presence: true
   validates :price_per_day, :rating, numericality: true
