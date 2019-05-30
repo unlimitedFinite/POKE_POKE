@@ -7,13 +7,22 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon)
+    
+     @markers = @pokemons.map do |selected|
+       
+      if selected.price_per_day > 40
+        pokemon_category = 'expensive'
+      elsif selected.price_per_day > 25
+        pokemon_category = "moderate"
+      else
+        pokemon_category = "cheap"
+      end
 
-    @markers = @pokemons.map do |selected|
       {
         lat: selected.latitude,
         lng: selected.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
-        image_url: helpers.asset_url('pokeball.png')
+        category: pokemon_category
       }
     end
   end
