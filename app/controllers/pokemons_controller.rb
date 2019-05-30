@@ -6,17 +6,24 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
-    # raise
     @pokemons = policy_scope(Pokemon)
 
     @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
 
     @markers = @pokemon_location.map do |selected|
+      if selected.price_per_day > 40
+        pokemon_category = 'expensive'
+      elsif selected.price_per_day > 25
+        pokemon_category = "moderate"
+      else
+        pokemon_category = "cheap"
+      end
+
       {
         lat: selected.latitude,
         lng: selected.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
-        image_url: helpers.asset_url('pokeball.png')
+        category: pokemon_category
       }
     end
   end
