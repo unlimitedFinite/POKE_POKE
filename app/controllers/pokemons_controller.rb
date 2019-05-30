@@ -7,10 +7,9 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon)
-
-    @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
-
-    @markers = @pokemon_location.map do |selected|
+    
+     @markers = @pokemons.map do |selected|
+       
       if selected.price_per_day > 40
         pokemon_category = 'expensive'
       elsif selected.price_per_day > 25
@@ -31,6 +30,9 @@ class PokemonsController < ApplicationController
   def inventory
     @user = current_user
     @pokemons = Pokemon.where(user: @user)
+      .left_joins(:bookings)
+      .group(:id)
+      .order('COUNT(bookings.id) DESC')
     authorize @pokemons
   end
 
