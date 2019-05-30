@@ -4,22 +4,43 @@
   <p>Bookings for user with email: <%= @user.email %></p>
   <div class="card-container">
     <% @bookings.each do |booking| %>
-      <% pokemon = @pokemons.find(booking.pokemon_id) %>
+      <% pokemon = booking.pokemon %>
+      <% review = booking.review %>
       <div class="card-product p-3">
         <img src="<%= pokemon.photo %>">
         <div class="card-product-infos">
           <div class="row">
             <div class="col-6 justify-around">
               <h2>
-                <%= pokemon.name.titleize %>
-                <% if (Time.now > booking.end_dt) %>
+                <%= pokemon.name.titleize %> ID:
+                [<%= pokemon.id %>]
+
+                <!-- If booking end date has past && booking does not have a review => show button to leave a review -->
+                <% if (Time.now > booking.end_dt && !booking.review) %>
                   <span class="ml-3 mb-2 badge badge-pill badge-info"><%= link_to "Leave review!", new_booking_review_path(booking.id) %></span>
 
-                <% else %>
+                <!-- If booking start date is still upcoming => show upcoming label and 'cancel button' -->
+                <% elsif (Time.now < booking.start_dt ) %>
+                  <span class="badge badge-pill badge-warning"> Upcoming!</span>
                   <%= link_to 'Cancel', booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:'ml-3 mb-2 badge badge-pill badge-danger' %>
+
+                <!-- If booking has left a review => show review score -->
+                <% elsif (review) %>
+                  <span class="stars badge badge-pill">Your rating:
+                    <% review.rating.times do  %>
+                      <i class='fas fa-star'></i>
+                    <% end %>
+                    <% (5 - review.rating).times do  %>
+                      <i class='far fa-star'></i>
+                    <% end %>
+                  </span>
+
+                <!-- If Time.now is after start date and before end date => show current label -->
+                <% elsif (Time.now > booking.start_dt && Time.now < booking.end_dt) %>
+                  <span class="badge badge-pill badge-secondary">Ongoing!</span>
+
                 <% end %>
               </h2>
-              <li><%= (booking.end_dt - booking.start_dt).to_i %> days</li>
               <li>Booking start: <%= booking.start_dt.to_formatted_s(:rfc822) %></li>
               <li>Booking ended: <%= booking.end_dt.to_formatted_s(:rfc822)   %></li>
               <%# else %>
