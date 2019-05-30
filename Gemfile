@@ -12,6 +12,7 @@ gem 'pundit'
 gem 'geocoder'
 gem 'faker'
 gem 'jquery-rails'
+gem 'algoliasearch-rails'
 
 
 gem 'autoprefixer-rails'
