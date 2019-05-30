@@ -6,12 +6,9 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
-    # raise
     @pokemons = policy_scope(Pokemon)
 
-    @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
-
-    @markers = @pokemon_location.map do |selected|
+    @markers = @pokemons.map do |selected|
       {
         lat: selected.latitude,
         lng: selected.longitude,
