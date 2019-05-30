@@ -1,7 +1,7 @@
 class PokemonPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where.not(user: user)
+      scope.where.not("user_id = :user or is_active = :is_active or latitude is null or longitude is null", user: user, is_active: false)
     end
   end
 
