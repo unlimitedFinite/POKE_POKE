@@ -3,6 +3,10 @@
 @import "show";
 @import "pokemon_new";
 
+.box {
+  display: none;
+}
+
 body {
   padding-top: 80px;
 }

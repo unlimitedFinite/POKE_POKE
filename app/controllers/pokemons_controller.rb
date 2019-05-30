@@ -25,6 +25,9 @@ class PokemonsController < ApplicationController
   def inventory
     @user = current_user
     @pokemons = Pokemon.where(user: @user)
+      .left_joins(:bookings)
+      .group(:id)
+      .order('COUNT(bookings.id) DESC')
     authorize @pokemons
   end
 
