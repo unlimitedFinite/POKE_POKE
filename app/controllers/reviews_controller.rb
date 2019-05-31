@@ -10,6 +10,9 @@ class ReviewsController < ApplicationController
     @review.booking = Booking.find(params['booking_id'])
     authorize @review
     if @review.save
+      # Change this to an average
+      @review.booking.pokemon.rating = @review.rating
+      @review.booking.pokemon.save
       respond_to do |format|
         format.html { redirect_to bookings_path }
         format.js

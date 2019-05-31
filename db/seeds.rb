@@ -135,7 +135,7 @@ pokemon_list.each do |pokemon|
 end
 
 # Creating reviews
-bookings_list.each do |booking|
+bookings_list[0..10].each do |booking|
   Review.create(
     booking: booking,
     content: "#{booking.pokemon.name} was a #{Faker::Dessert.variety}",
