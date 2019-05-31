@@ -68,7 +68,7 @@ end
 
 puts 'Creating Pokemon'
 names = []
-url = 'https://pokeapi.co/api/v2/pokemon?limit=50'
+url = 'https://pokeapi.co/api/v2/pokemon?limit=100'
 json = open(url).read
 data = JSON.parse(json)['results']
 data.each do |result|

@@ -14,7 +14,7 @@ class Pokemon < ApplicationRecord
 
 
   pg_search_scope :search_by_name,
-    against: [:name],
+    against: [:name, :category, :level, :address],
     using: {
       tsearch: { prefix: true }
     }
