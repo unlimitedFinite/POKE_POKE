@@ -1,9 +1,15 @@
 <div class="container">
   <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
-  <div class="d-flex justify-content-between">
-    <input id="index-search" class="m-3" type="text" placeholder="Find your favourite pokemon today...">
-    <%= link_to 'Search', pokemons_path, class:'mt-3 mb-3 btn btn-success' %>
-  </div>
+  <form>
+    <%= form_tag pokemons_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control my-3",
+        placeholder: "Find a pokemon"
+      %>
+    <% end %>
+  </form>
+
   <div
     mapindex="<%= @mapindex %>"
     id="map"
