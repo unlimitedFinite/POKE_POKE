@@ -9,4 +9,10 @@ class Pokemon < ApplicationRecord
   validates :name, :level, :category, :address, :price_per_day, presence: true
   validates :price_per_day, :rating, numericality: true
   # TODO: Validate photos and ratings?
+
+  def unavailable_dates
+    bookings.pluck(:start_dt, :end_dt).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
 end

@@ -1,5 +1,4 @@
 const changeStarColor = (event) => {
-  console.log("change stars working?");
   // let element = document.getElementById(event.target.id)
 
   // let starId = parseInt(element.id);
@@ -21,7 +20,6 @@ const changeStarColor = (event) => {
 }
 
 const countYellowStars = () => {
-  console.log("count yellow stars working?");
   // debugger
   // let arr = [];
   // let stars = document.getElementsByClassName("star");

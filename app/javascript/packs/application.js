@@ -1,4 +1,3 @@
-
 import 'bootstrap';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
@@ -16,3 +15,12 @@ initSelect2();
 import { countYellowStars, changeStarColor } from '../components/reviews';
 countYellowStars();
 changeStarColor();
+
+import { initFlatpickr } from '../plugins/init_flatpickr';
+initFlatpickr();
+
+
+
+
+
+

@@ -61,6 +61,13 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_dt, :end_dt)
   end
 
+  def booking_status
+    if @booking.start_dt < Time.now
+      redirect_to bookings_path
+      flash[:failure] = "#{@booking.start_dt} has already passed"
+    end
+  end
+
   # def booking_state
   #    if (Time.now > booking.end_dt && !booking.rating)
   #     return "<span class="ml-3 mb-2 badge badge-pill badge-info">= link_to "Leave review!", new_booking_review_path(booking.id) </span>"
