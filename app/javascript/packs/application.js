@@ -12,28 +12,33 @@ import { initSelect2 } from '../plugins/init_select2';
 import 'select2/dist/css/select2.css';
 initSelect2();
 
-import * as algoliasearch from 'algoliasearch';
-import { initAlgolia } from '../plugins/init_algoliasearch'
-
-window.addEventListener('load', function() {
-
-  const search = instantsearch({
-    indexName: 'Pokemon',
-    searchClient: algoliasearch(
-      '76KFORHX8W',
-      'e9a34b797f871c431703346964e1a58b'
-    ),
-  });
+import { countYellowStars, changeStarColor } from '../components/reviews';
+countYellowStars();
+changeStarColor();
 
 
 
+// import { initAlgolia } from '../plugins/init_algoliasearch'
 
-  search.addWidget(
-    instantsearch.widgets.searchBox({
-      container: '#pokemon-search',
-      placeholder: 'Search for pokemon'
-    })
-  );
+// window.addEventListener('load', function() {
+
+//   const search = instantsearch({
+//     indexName: 'Pokemon',
+//     searchClient: algoliasearch(
+//       '76KFORHX8W',
+//       'e9a34b797f871c431703346964e1a58b'
+//     ),
+//   });
+
+
+
+
+//   search.addWidget(
+//     instantsearch.widgets.searchBox({
+//       container: '#pokemon-search',
+//       placeholder: 'Search for pokemon'
+//     })
+//   );
 
   // search.addWidget(
   //   instantsearch.widgets.hits({
@@ -45,37 +50,37 @@ window.addEventListener('load', function() {
   //   })
   // );
 
-    search.addWidget(
-      instantsearch.widgets.refinementList({
-        container: '#rating-search',
-        attributeName: 'rating',
-        operator: 'or',
-        limit: 10,
-        sortBy: ['name:asc']
-      })
-    );
+//     search.addWidget(
+//       instantsearch.widgets.refinementList({
+//         container: '#rating-search',
+//         attributeName: 'rating',
+//         operator: 'or',
+//         limit: 10,
+//         sortBy: ['name:asc']
+//       })
+//     );
 
-  search.addWidget(
-      instantsearch.widgets.rangeSlider({
-        container: '#price-search',
-        attributeName: 'price_per_day',
-        pips: false,
-        tooltips: {format: function(rawValue) {return parseInt(rawValue)}}
-      })
-      );
+//   search.addWidget(
+//       instantsearch.widgets.rangeSlider({
+//         container: '#price-search',
+//         attributeName: 'price_per_day',
+//         pips: false,
+//         tooltips: {format: function(rawValue) {return parseInt(rawValue)}}
+//       })
+//       );
 
-    search.addWidget(
-      instantsearch.widgets.refinementList({
-        container: '#address-search',
-        attributeName: 'address',
-        operator: 'or',
-        limit: 10,
-        sortBy: ['name:asc']
-      })
-    );
+//     search.addWidget(
+//       instantsearch.widgets.refinementList({
+//         container: '#address-search',
+//         attributeName: 'address',
+//         operator: 'or',
+//         limit: 10,
+//         sortBy: ['name:asc']
+//       })
+//     );
 
-  search.start();
-});
+//   search.start();
+// });
 
 
 
@@ -124,3 +129,4 @@ window.addEventListener('load', function() {
 //   console.log(query);
 //   console.log(facets);
 // });
+
