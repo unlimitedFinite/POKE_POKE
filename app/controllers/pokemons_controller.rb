@@ -7,9 +7,9 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = policy_scope(Pokemon)
-    
-     @markers = @pokemons.map do |selected|
-       
+
+    @markers = @pokemons.map do |selected|
+
       if selected.price_per_day > 40
         pokemon_category = 'expensive'
       elsif selected.price_per_day > 25
@@ -22,7 +22,8 @@ class PokemonsController < ApplicationController
         lat: selected.latitude,
         lng: selected.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
-        category: pokemon_category
+        category: pokemon_category,
+        flag: true
       }
     end
   end
@@ -38,6 +39,16 @@ class PokemonsController < ApplicationController
 
   def show
     @booking = Booking.new
+
+    if @pokemon.price_per_day > 40
+      pokemon_category = 'expensive'
+    elsif @pokemon.price_per_day > 25
+      pokemon_category = "moderate"
+    else
+      pokemon_category = "cheap"
+    end
+
+    @markers = [{ lat: @pokemon.latitude, lng: @pokemon.longitude, category: pokemon_category }]
   end
 
   def new

@@ -1,8 +1,54 @@
 .mapboxgl-popup {
-  max-width: 200px;
+  width: 250px;
+  height: 180px;
 }
 
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+  height: 170px;
 }
+
+.cheap {
+  background-image: asset_url("pokeball_red.png")
+}
+
+.moderate {
+  background-image: asset_url("pokeball_blue.png")
+}
+
+.expensive {
+  background-image: asset_url("pokeball_yellow.png")
+}
+
+.special {
+  background-image: asset_url("pokeball_purple.png")
+}
+
+
+.top-card {
+  justify-content: space-between;
+}
+
+.carousel-inner {
+  display: flex;
+  align-items: middle;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 140px;
+  padding: 5px;
+}
+
+
+
+
+
+
+
