@@ -1,26 +1,13 @@
 <div class="container">
   <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
   <form>
-    <div class="form-group">
-      <div class="d-flex justify-space-between">
-        <input id="pokemon-search" class="m-3" type="text" placeholder="Find your favourite pokemon today...">
-        <%= link_to 'Search', pokemons_path, class:'mt-3 mb-3 btn btn-success' %>
-      </div>
-      <div class="container-fluid d-flex justify-space-between">
-        <div class="col-4">
-          <label for="price-search">Price</label>
-          <input id="price-search" class="m-3" type="number">
-        </div>
-        <div class="col-4">
-          <label for="rating-search">Rating</label>
-          <input id="rating-search" class="m-3" type="number">
-        </div>
-        <div class="col-4">
-          <label for="address-search">Address</label>
-          <input id="address-search" class="m-3" type="text">
-        </div>
-      </div>
-    </div>
+    <%= form_tag pokemons_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control my-3",
+        placeholder: "Find a pokemon"
+      %>
+    <% end %>
   </form>
 
   <div

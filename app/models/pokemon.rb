@@ -1,5 +1,6 @@
 class Pokemon < ApplicationRecord
-  include AlgoliaSearch
+  include PgSearch
+  # include AlgoliaSearch
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -10,11 +11,17 @@ class Pokemon < ApplicationRecord
   validates :name, :level, :category, :address, :price_per_day, presence: true
   validates :price_per_day, :rating, numericality: true
 
-  algoliasearch do
-    searchableAttributes ['name']
+  pg_search_scope :search_by_name,
+    against: [:name],
+    using: {
+      tsearch: { prefix: true }
+    }
 
-    attributesForFaceting ['searchable(price_per_day)', 'searchable(address)', 'searchable(rating)', :name]
-  end
+  # algoliasearch do
+  #   searchableAttributes ['name']
+
+  #   attributesForFaceting ['searchable(price_per_day)', 'searchable(address)', 'searchable(rating)', :name]
+  # end
 
   # TODO: Validate photos and ratings?
 end

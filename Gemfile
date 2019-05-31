@@ -13,6 +13,7 @@ gem 'geocoder'
 gem 'faker'
 gem 'jquery-rails'
 gem 'algoliasearch-rails'
+gem 'pg_search'
 
 
 gem 'autoprefixer-rails'
