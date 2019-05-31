@@ -22,6 +22,6 @@ function updateBadge(stars) {
 <% if @review.errors.any? %>
   refreshForm('<%= j render "reviews/form", booking: booking, review: @review %>');
 <% else %>
-  deleteForm(newReviewForm);
   updateBadge('<%= j render "bookings/stars", review: @review %>');
+  deleteForm(newReviewForm);
 <% end %>

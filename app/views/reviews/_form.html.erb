@@ -1,7 +1,9 @@
 <div class="container">
   <%= simple_form_for [booking, review], remote: true do |f| %>
-  <%= f.input :rating, placeholder: 'Please enter review score: 0 - 5' %>
-  <%= f.input :content, as: :text %>
-  <%= f.submit "Add Review", class: "mt-2 btn btn-primary" %>
+    <%= f.input :rating %>
+    <%= f.input :content, as: :text %>
+    <%= f.submit "Add Review", class: "mt-2 btn btn-primary" %>
   <% end %>
 </div>
+
+
