@@ -12,7 +12,8 @@ gem 'pundit'
 gem 'geocoder'
 gem 'faker'
 gem 'jquery-rails'
-
+gem 'algoliasearch-rails'
+gem 'pg_search'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'

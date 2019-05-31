@@ -6,16 +6,21 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :update, :edit, :deactivate, :reactivate]
 
   def index
-    @pokemons = policy_scope(Pokemon)
+    if params[:query].present?
+      @pokemons = policy_scope(Pokemon).search_by_name(params[:query])
+    else
+      @pokemons = policy_scope(Pokemon)
+    end
 
-    @pokemon_location = Pokemon.where.not(latitude: nil, longitude: nil)
+    @markers = @pokemons.map do |selected|
+      pokemon_category = get_pokemon_category(selected.price_per_day)
 
-    @markers = @pokemon_location.map do |selected|
       {
         lat: selected.latitude,
         lng: selected.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
-        image_url: helpers.asset_url('pokeball.png')
+        category: pokemon_category,
+        flag: true
       }
     end
   end
@@ -31,6 +36,10 @@ class PokemonsController < ApplicationController
 
   def show
     @booking = Booking.new
+
+    pokemon_category = get_pokemon_category(@pokemon.price_per_day)
+
+    @markers = [{ lat: @pokemon.latitude, lng: @pokemon.longitude, category: pokemon_category }]
   end
 
   def new
@@ -110,5 +119,15 @@ class PokemonsController < ApplicationController
     # raise
     pokemon_serialized = open(url).read
     return JSON.parse(pokemon_serialized)
+  end
+
+  def get_pokemon_category(price_per_day)
+    if price_per_day > 40
+      return 'expensive'
+    elsif price_per_day > 25
+      return 'moderate'
+    else
+      return 'cheap'
+    end
   end
 end

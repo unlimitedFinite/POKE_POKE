@@ -6,6 +6,12 @@ const initMapbox = () => {
 
   const mapElement = document.getElementById('map');
 
+  const fitMapToMarkers = (map, markers) => {
+    const bounds = new mapboxgl.LngLatBounds();
+    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+    map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+  };
+
   if (mapElement) {
 
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -24,24 +30,50 @@ const initMapbox = () => {
       // Create a HTML element for your custom marker
       const element = document.createElement('div');
       element.className = 'marker';
-      element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.classList.add(`${marker.category}`);
       element.style.backgroundSize = 'contain';
       element.style.width = '25px';
       element.style.height = '25px';
 
-      new mapboxgl.Marker()
+
+      // Add popup display for index view only
+      if (marker.flag === true) {
+        //const geosearch = ["true"]
+        new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
-      });
+      } else {
+        new mapboxgl.Marker(element)
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+        // add full screen view to show map only
+        map.addControl(new mapboxgl.FullscreenControl());
+      };
+    })
 
-      map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      }));
+    // Geocoder search bar for index page only
+    // if (marker[0].flag === true) {
+    //   map.addControl(new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl
+    //   }));
+    // }
 
-  }
+    // Add user geolocate control
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    }));
+    // sizing of map to marker bounds
+    fitMapToMarkers(map, markers);
 
+    //Add navigation control for both index and show maps
+    map.addControl(new mapboxgl.NavigationControl());
+
+  };
 }
 
 export { initMapbox };
