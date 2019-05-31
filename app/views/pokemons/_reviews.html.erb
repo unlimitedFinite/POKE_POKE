@@ -1,0 +1,30 @@
+<div class="container">
+  <h3><%= @pokemon.name.titleize %>'s Reviews</h3>
+  <div class="card-container">
+    <% @pokemon.reviews.each do |review| %>
+      <div class="card-product p-3">
+        <div class="card-product-infos">
+          <div class="row">
+            <div class="col justify-around">
+              <h2>
+                Booking ID: <%= review.booking_id %>
+              </h2>
+              <p><% if (review) %>
+                  <span class="stars badge badge-pill">
+                    <% review.rating.times do  %>
+                      <i class='fas fa-star'></i>
+                    <% end %>
+                    <% (5 - review.rating).times do  %>
+                      <i class='far fa-star'></i>
+                    <% end %>
+                  </span>
+                <% end %> by anonymous</p>
+                <p><%= review.content %></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
