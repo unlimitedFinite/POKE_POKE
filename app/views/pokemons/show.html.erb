@@ -1,7 +1,5 @@
 <div class="container">
-  <h1>Pokemon Listing Details</h1>
-  <br>
-  <h2>&nbsp;<%= @pokemon.name %>
+  <h1 class="p-2">&nbsp;<%= @pokemon.name.titleize %>
 
   <% if policy(@pokemon).edit? %>
     <small>
@@ -20,7 +18,7 @@
     </small>
   <% end %>
 
-  </h2>
+  </h1>
   <hr>
 
   <div class="card-show">
@@ -42,13 +40,12 @@
         <div class="col-sm">
           <div class="list">
 
-            <p><strong>Pokemon details</strong></>
-              <li>Name: <%= @pokemon.name %></li>
-              <li>Type: <%= @pokemon.category %></li>
+            <p><strong>Pokemon details</strong></p>
+              <li>Type: <%= @pokemon.category.titleize %></li>
               <li>Level: <%= @pokemon.level %></li>
-              <li>Location: <%= @pokemon.address %></li>
+              <li>City: <%= @pokemon.address.titleize %></li>
               <li>Rating: <%= @pokemon.rating %></li>
-              <li>Price: <%= @pokemon.price_per_day %></li>
+              <li>Price: $<%= @pokemon.price_per_day.to_i %> a day</li>
               <br>
 
           </div>
@@ -64,7 +61,5 @@
       </div>
 
     </div>
-
-    </p><%= link_to 'Back to index', pokemons_path, class: "ml-3" %><p>
   </div>
 </div>

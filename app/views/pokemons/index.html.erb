@@ -1,10 +1,11 @@
 <div class="container">
-  <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
+  <h1 class="p-2 text-center" style="font-family: 'Press Start 2P', cursive;">PokePoke</h1>
+  <h6 class="p-2 text-center">A wild Squirtle appeared! Matey, you're walking the plank if you lose! My function is to provide Ash with information and advice regarding Pokémon and their training. If lost or stolen, I cannot be replaced. If I had started as a trainer at your age... </h6>
   <form>
     <%= form_tag pokemons_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control my-3",
+        class: "form-control my-3 float-left",
         placeholder: "Find a pokemon"
       %>
     <% end %>

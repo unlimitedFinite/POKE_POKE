@@ -1,7 +1,7 @@
 
 <div class="container">
-  <h1 class="p-2 display-5">My Bookings</h1>
-  <p>Here are all your bookings <%= current_user.first_name %>. Don't forget to leave a review!</p>
+  <h1 class="p-2 text-center" style="font-family: 'Press Start 2P', cursive;">Bookings</h1>
+  <p class="text-center">Here are all your bookings <%= current_user.first_name %>. Don't forget to leave a review!</p>
   <div class="card-container" id="accordian">
     <% @bookings.each_with_index do |booking, index| %>
       <% pokemon = booking.pokemon %>
