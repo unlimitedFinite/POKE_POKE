@@ -38,7 +38,8 @@ misty = User.create(
   dob: '1/1/1989',
   phone_number: '(123) 495-0239',
   gender: 'F',
-  password: 'password'
+  password: 'password',
+  is_owner: true
 )
 
 puts 'Creating other Users'
@@ -50,7 +51,8 @@ puts 'Creating other Users'
     dob: '1/1/1990',
     phone_number: Faker::PhoneNumber.cell_phone,
     gender: 'M',
-    password: 'password'
+    password: 'password',
+    is_owner: true
   )
 end
 
@@ -62,7 +64,8 @@ end
     dob: '1/1/1990',
     phone_number: Faker::PhoneNumber.cell_phone,
     gender: 'F',
-    password: 'password'
+    password: 'password',
+    is_owner: true
   )
 end
 
