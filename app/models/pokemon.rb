@@ -27,4 +27,10 @@ class Pokemon < ApplicationRecord
 
 
   # TODO: Validate photos and ratings?
+
+  def unavailable_dates
+    bookings.pluck(:start_dt, :end_dt).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
 end

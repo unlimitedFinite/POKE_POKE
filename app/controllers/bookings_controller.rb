@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     @pokemon = Pokemon.find(params[:pokemon_id])
     @booking = Booking.new
     authorize @booking
+    @bookings = Booking.all
   end
 
   def create
@@ -58,6 +59,13 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_dt, :end_dt)
+  end
+
+  def booking_status
+    if @booking.start_dt < Time.now
+      redirect_to bookings_path
+      flash[:failure] = "#{@booking.start_dt} has already passed"
+    end
   end
 
   # def booking_state
