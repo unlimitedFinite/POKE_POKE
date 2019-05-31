@@ -35,21 +35,44 @@ const initMapbox = () => {
       element.style.width = '25px';
       element.style.height = '25px';
 
-      new mapboxgl.Marker(element)
+      // Add popup display for index view only
+      if (marker.flag === true) {
+        //const geosearch = ["true"]
+        new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
-    });
 
-    map.addControl(new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl
+      } else {
+        new mapboxgl.Marker(element)
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+        // add full screen view to show map only
+        map.addControl(new mapboxgl.FullscreenControl());
+      };
+    })
+
+    // Add user geolocate control
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+        },
+        trackUserLocation: true
     }));
-
+    // sizing of map to marker bounds
     fitMapToMarkers(map, markers);
 
-  }
+    //Add navigation control for both index and show maps
+    map.addControl(new mapboxgl.NavigationControl());
+    // Geocoder search bar
+    // if (geosearch === "true") {
+    //   map.addControl(new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken,
+    //     mapboxgl: mapboxgl
+    //   }));
+    // }
 
+  };
 }
 
 export { initMapbox };

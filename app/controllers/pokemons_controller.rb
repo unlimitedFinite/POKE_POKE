@@ -22,7 +22,8 @@ class PokemonsController < ApplicationController
         lat: selected.latitude,
         lng: selected.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { selected: selected }),
-        category: pokemon_category
+        category: pokemon_category,
+        flag: true
       }
     end
   end
@@ -47,7 +48,7 @@ class PokemonsController < ApplicationController
       pokemon_category = "cheap"
     end
 
-    @markers = [{ lat: @pokemon.latitude, lng: @pokemon.longitude, category: pokemon_category, infowindow: false }]
+    @markers = [{ lat: @pokemon.latitude, lng: @pokemon.longitude, category: pokemon_category }]
   end
 
   def new
