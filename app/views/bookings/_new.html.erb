@@ -11,8 +11,9 @@
     </div>
   <% end %>
 
-  <%= f.input :start_dt %>
-  <%= f.input :end_dt %>
+  <%= f.input :start_dt, as: :date, html5: true, label: "Start Date" %>
+  <%= f.input :end_dt, as: :date, html5: true, label: "End Date" %>
+
   <%= f.submit "Book this Pokemon", class: "btn btn-primary" %>
 
 <% end %>
