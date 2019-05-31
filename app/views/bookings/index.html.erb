@@ -25,7 +25,7 @@
                   </span>
                 <% end %>
                 <% if (Time.now > booking.end_dt && !booking.review) %>
-                  <button type="button" data-toggle="collapse" data-target="#collapse<%= index + 1 %>" aria-expanded="false" aria-controls="collapse<%= index + 1 %>">Write Review</button>
+                  <span id="starspan"><button type="button" data-toggle="collapse" data-target="#collapse<%= index + 1 %>" aria-expanded="false" aria-controls="collapse<%= index + 1 %>">Write Review</button></span>
                 <% elsif (Time.now < booking.start_dt ) %>
                   <span class="badge badge-pill badge-primary"> Upcoming!
                   </span>
@@ -51,8 +51,8 @@
         </div>
       </div>
       <div class="collapse" id="collapse<%= index + 1 %>" data-parent="#accordian">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        <div class="card card-body" id="new_review_<%= booking.id %>">
+          <%= render 'reviews/form', booking: booking, review: @review %>
         </div>
       </div>
     <% end %>
