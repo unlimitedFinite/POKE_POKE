@@ -37,8 +37,8 @@
                   <% end %>
                   Income: $<%= sum %>
               </h2>
-              <br>
               <p>Rating: <%= pokemon.rating %></p>
+              <p><%= pokemon.reviews.length %></p>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="card-container">
           <% pokemon.bookings.each do |booking| %>
             <div class="card-product p-3">
-              <div class="card-product-infos-inv">
+              <div class="card-product-infos">
                 <div class="row">
                   <div class="col justify-between">
                     <h2>
