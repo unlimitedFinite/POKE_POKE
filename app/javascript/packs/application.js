@@ -25,8 +25,8 @@ changeStarColor();
 //   const search = instantsearch({
 //     indexName: 'Pokemon',
 //     searchClient: algoliasearch(
-//       '76KFORHX8W',
-//       'e9a34b797f871c431703346964e1a58b'
+//       '***************',
+//       '**********************'
 //     ),
 //   });
 

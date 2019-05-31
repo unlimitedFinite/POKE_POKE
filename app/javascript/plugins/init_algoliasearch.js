@@ -1,6 +1,6 @@
 import * as algoliasearch from 'algoliasearch';
 
-const client = algoliasearch('76KFORHX8W', 'e9a34b797f871c431703346964e1a58b');
+const client = algoliasearch('*************', '*****************');
 const index = client.initIndex('Pokemon');
 
 const initAlgolia = (query, facets = []) => {
