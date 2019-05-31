@@ -1,0 +1,27 @@
+console.log("Hello")
+var form_id = "new_review_<%= @review.booking.id %>"
+var newReviewForm = document.getElementById(form_id);
+var span = document.getElementById('starspan');
+
+console.log(span)
+
+function refreshForm(innerHTML) {
+  var newReviewForm = document.getElementById(form_id);
+  newReviewForm.innerHTML = innerHTML;
+}
+
+function deleteForm(form) {
+  // form.remove();
+  form.parentElement.classList.remove('show');
+}
+
+function updateBadge(stars) {
+  span.innerHTML = stars;
+}
+
+<% if @review.errors.any? %>
+  refreshForm('<%= j render "reviews/form", booking: booking, review: @review %>');
+<% else %>
+  deleteForm(newReviewForm);
+  updateBadge('<%= j render "bookings/stars", review: @review %>');
+<% end %>

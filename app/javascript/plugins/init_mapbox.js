@@ -35,6 +35,7 @@ const initMapbox = () => {
       element.style.width = '25px';
       element.style.height = '25px';
 
+
       // Add popup display for index view only
       if (marker.flag === true) {
         //const geosearch = ["true"]
@@ -42,7 +43,6 @@ const initMapbox = () => {
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
-
       } else {
         new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
@@ -51,6 +51,14 @@ const initMapbox = () => {
         map.addControl(new mapboxgl.FullscreenControl());
       };
     })
+
+    // Geocoder search bar for index page only
+    // if (marker[0].flag === true) {
+    //   map.addControl(new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl
+    //   }));
+    // }
 
     // Add user geolocate control
     map.addControl(new mapboxgl.GeolocateControl({
@@ -64,13 +72,6 @@ const initMapbox = () => {
 
     //Add navigation control for both index and show maps
     map.addControl(new mapboxgl.NavigationControl());
-    // Geocoder search bar
-    // if (geosearch === "true") {
-    //   map.addControl(new MapboxGeocoder({
-    //     accessToken: mapboxgl.accessToken,
-    //     mapboxgl: mapboxgl
-    //   }));
-    // }
 
   };
 }

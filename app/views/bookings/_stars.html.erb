@@ -1,0 +1,8 @@
+<span class="stars badge badge-pill">
+  <% review.rating.times do  %>
+    <i class='fas fa-star'></i>
+  <% end %>
+  <% (5 - review.rating).times do  %>
+    <i class='far fa-star'></i>
+  <% end %>
+</span>
