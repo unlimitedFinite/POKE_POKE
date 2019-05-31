@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
     @pokemons = Pokemon.all
     @user = current_user
     @bookings = policy_scope(Booking).order(end_dt: :desc)
+    @review = Review.new
   end
 
   def show

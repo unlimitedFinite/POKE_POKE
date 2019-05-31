@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Leave a review for </h1>
   <p>Find me in app/views/reviews/new.html.erb</p>
-  <%= simple_form_for [@booking, @review], remote: true do |f| %>
+  <%= simple_form_for [booking, review], remote: true do |f| %>
   <%= f.input :rating, placeholder: 'Please enter review score: 0 - 5' %>
   <%= f.input :content, as: :text %>
   <%= f.submit "Add Review", class: "mt-2 btn btn-primary" %>

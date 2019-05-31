@@ -2,8 +2,8 @@
 <div class="container">
   <h1 class="p-2 display-5">My Bookings</h1>
   <p>Here are all your bookings <%= current_user.first_name %>. Don't forget to leave a review!</p>
-  <div class="card-container">
-    <% @bookings.each do |booking| %>
+  <div class="card-container" id="accordian">
+    <% @bookings.each_with_index do |booking, index| %>
       <% pokemon = booking.pokemon %>
       <% review = booking.review %>
       <div class="card-product p-3">
@@ -25,7 +25,7 @@
                   </span>
                 <% end %>
                 <% if (Time.now > booking.end_dt && !booking.review) %>
-                  <span class="ml-3 mb-2 badge badge-pill badge-info"><%= link_to "Leave review!", new_booking_review_path(booking.id) %></span>
+                  <button type="button" data-toggle="collapse" data-target="#collapse<%= index + 1 %>" aria-expanded="false" aria-controls="collapse<%= index + 1 %>">Write Review</button>
                 <% elsif (Time.now < booking.start_dt ) %>
                   <span class="badge badge-pill badge-primary"> Upcoming!
                   </span>
@@ -48,6 +48,11 @@
 
             </div>
           </div>
+        </div>
+      </div>
+      <div class="collapse" id="collapse<%= index + 1 %>" data-parent="#accordian">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
         </div>
       </div>
     <% end %>
