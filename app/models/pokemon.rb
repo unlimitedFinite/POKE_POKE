@@ -6,7 +6,7 @@ class Pokemon < ApplicationRecord
   has_many :bookings
   has_many :reviews, through: :bookings
 
-  validates :name, :level, :category, :price_per_day, presence: true
+  validates :name, :level, :category, :address, :price_per_day, presence: true
   validates :price_per_day, :rating, numericality: true
   # TODO: Validate photos and ratings?
 end
