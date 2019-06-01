@@ -20,7 +20,7 @@
   <%= simple_form_for([@pokemon, @booking]) do |f| %>
   <%= f.input :start_dt, as: :string, label: "Dates", placeholder: "From", wrapper_html: { class: "inline_field_wrapper" } %>
   <%= f.input :end_dt, as: :string, label: '&nbsp;'.html_safe, placeholder: "To", disabled: true, wrapper_html: { class: "inline_field_wrapper" } %>
-  <%= f.submit "book", class: "btn btn-primary btn-lg btn-block btn-booking" %>
+  <%= f.submit "Book Now!", class: "btn btn-primary btn-lg btn-block btn-booking" %>
   <% end %>
 </div>
 

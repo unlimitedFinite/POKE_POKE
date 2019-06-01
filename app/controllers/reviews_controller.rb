@@ -6,14 +6,22 @@ class ReviewsController < ApplicationController
   end
 
   def create
-
     @review = Review.new(review_params)
     @review.booking = Booking.find(params['booking_id'])
     authorize @review
     if @review.save
-      redirect_to bookings_path
+      # Change this to an average
+      @review.booking.pokemon.rating = @review.rating
+      @review.booking.pokemon.save
+      respond_to do |format|
+        format.html { redirect_to bookings_path }
+        format.js
+      end
     else
-      raise
+      respond_to do |format|
+        format.html { render 'bookings/index' }
+        format.js
+      end
     end
   end
 

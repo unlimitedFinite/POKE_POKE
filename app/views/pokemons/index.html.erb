@@ -1,9 +1,16 @@
 <div class="container">
-  <h5 class="pt-3 text-center">Search for your favorite pokemon below..</h5>
-  <div class="d-flex justify-content-between">
-    <input id="index-search" class="m-3" type="text" placeholder="Find your favourite pokemon today...">
-    <%= link_to 'Search', pokemons_path, class:'mt-3 mb-3 btn btn-success' %>
-  </div>
+  <h1 class="p-2 text-center" style="font-family: 'Press Start 2P', cursive;">PokePoke</h1>
+  <h6 class="p-2 text-center">A wild Squirtle appeared! Matey, you're walking the plank if you lose! My function is to provide Ash with information and advice regarding Pokémon and their training. If lost or stolen, I cannot be replaced. If I had started as a trainer at your age... </h6>
+  <form>
+    <%= form_tag pokemons_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control my-3 float-left",
+        placeholder: "Find a pokemon"
+      %>
+    <% end %>
+  </form>
+
   <div
     mapindex="<%= @mapindex %>"
     id="map"
@@ -30,6 +37,7 @@
                 <h2>$<%= pokemon.price_per_day %> per day</h2>
                 <p>Rating: <%= pokemon.rating %></p>
                 <p>Owner: <%= pokemon.user.first_name %></p>
+
               </div>
             </div>
           </div>
