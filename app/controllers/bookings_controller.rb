@@ -29,11 +29,11 @@ class BookingsController < ApplicationController
     @booking.pokemon_id = params[:pokemon_id]
     @booking.user_id = current_user[:id]
     @booking.price_paid = ((@booking.end_dt - @booking.start_dt) * @pokemon.price_per_day)
-    @booking.save
     if @booking.save
       redirect_to bookings_path
     else
-      render 'bookings/show'
+      redirect_to pokemon_path(@pokemon)
+      flash[:failure] = "Dates unavailable"
     end
   end
 
@@ -62,12 +62,12 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_dt, :end_dt)
   end
 
-  def booking_status
-    if @booking.start_dt < Time.now
-      redirect_to bookings_path
-      flash[:failure] = "#{@booking.start_dt} has already passed"
-    end
-  end
+  # def booking_status
+  #   if @booking.start_dt < Time.now
+  #     redirect_to bookings_path
+  #     flash[:failure] = "#{@booking.start_dt} has already passed"
+  #   end
+  # end
 
   # def booking_state
   #    if (Time.now > booking.end_dt && !booking.rating)
