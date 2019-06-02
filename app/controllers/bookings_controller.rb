@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
   end
 
   def update
-
   end
 
   def new
@@ -29,6 +28,7 @@ class BookingsController < ApplicationController
     @booking.pokemon_id = params[:pokemon_id]
     @booking.user_id = current_user[:id]
     @booking.price_paid = ((@booking.end_dt - @booking.start_dt) * @pokemon.price_per_day)
+    @booking.range = (@booking.start_dt..@booking.end_dt)
     if @booking.save
       redirect_to bookings_path
     else
