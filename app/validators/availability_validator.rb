@@ -5,7 +5,7 @@ class AvailabilityValidator < ActiveModel::EachValidator
     date_ranges = bookings.map { |b| b.start_dt..b.end_dt }
 
     date_ranges.each do |range|
-      if range.include? value
+      if range.overlaps? value
         record.errors.add(attribute, "not available")
       end
     end

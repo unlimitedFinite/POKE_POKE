@@ -4,7 +4,8 @@ class Booking < ApplicationRecord
   belongs_to :pokemon
   has_one :review
 
-  validates :start_dt, :end_dt, presence: true, availability: true
+  validates :start_dt, :end_dt, presence: true
+  validates :range, presence: true, availability: true
   validate :end_date_after_start_date
 
   private
